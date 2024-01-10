@@ -6,7 +6,7 @@ using SHJ.Commerce.Infrastructure.EntityFrameworkCore;
 
 namespace SHJ.Commerce.Infrastructure;
 
-public static class IdentityConfiguration
+internal static class IdentityConfiguration
 {
     public static IServiceCollection RegisterIdentity(this IServiceCollection services)
     {

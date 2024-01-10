@@ -1,19 +1,25 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Options;
 using SHJ.BaseFramework.Domain;
 using SHJ.BaseFramework.Shared;
-using SHJ.Commerce.Domain.Aggregates.Dynamic;
 using SHJ.Commerce.Domain.Aggregates.Identity;
-using System.Reflection;
 
 namespace SHJ.Commerce.Infrastructure.EntityFrameworkCore;
 
-public class ApplicationDbContext : IdentityDbContext<User, Role, Guid>
+public class ApplicationDbContext : IdentityDbContext<User, Role, Guid, UserClaim, UserRole, UserLoginHistory, RoleClaim, UserToken>
 {
-    #region Entities
-    
+    #region Entities Identity
+    public virtual DbSet<Permission> Permissions { get; set; }
+    public virtual DbSet<UserAddress> UserAddress { get; set; }
+    #endregion
+
+    #region Dynamic
+
+    #endregion
+
+    #region Cms
+
     #endregion
 
 
@@ -29,38 +35,24 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, Guid>
     #endregion
 
 
+
+    #region ContextConfigurations
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        builder.BuildApplyConfiguration();
+        builder.Indexes();
+        builder.GenerateData();
+        builder.QueryFilters();
+
+
         base.OnModelCreating(builder);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        if (Options.Value.DatabaseType == DatabaseType.InMemory)
-        {
-            optionsBuilder.UseInMemoryDatabase("App.Db");
-            optionsBuilder.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
-        }
-        else if (Options.Value.DatabaseType == DatabaseType.MsSql)
-        {
-            string connectionString = SetConnectionString();
-            optionsBuilder.UseSqlServer(connectionString);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(connectionString);
-        }
-        else if (Options.Value.DatabaseType == DatabaseType.Manual)
-        {
-            optionsBuilder.UseSqlServer(Options.Value.ManualConnectionString);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-
-        }
+        optionsBuilder.ConfigurationOptionsBuilder(Options);
 
         base.OnConfiguring(optionsBuilder);
-    }
-    private string SetConnectionString()
-    {
-        return $@"Data Source={Options.Value.SqlOptions.DataSource};Initial Catalog={Options.Value.SqlOptions.DatabaseName};Persist Security Info=True;MultipleActiveResultSets=True;User ID={Options.Value.SqlOptions.UserID};Password={Options.Value.SqlOptions.Password}";
     }
 
     public new async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
@@ -81,5 +73,7 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, Guid>
 
         return await base.SaveChangesAsync(cancellationToken);
     }
+
+    #endregion
 
 }
