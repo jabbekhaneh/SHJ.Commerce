@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
+    <PackageReference Include="SHJ.BaseFramework.Dapper" Version="1.5.0" />
+    <PackageReference Include="SHJ.BaseFramework.EntityFrameworkCore" Version="1.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SHJ.Commerce.Domain\SHJ.Commerce.Domain.csproj" />
+    <ProjectReference Include="..\SHJ.Commerce.Shared\SHJ.Commerce.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

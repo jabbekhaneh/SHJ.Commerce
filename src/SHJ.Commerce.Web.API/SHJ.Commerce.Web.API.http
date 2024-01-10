@@ -1,0 +1,6 @@
+@SHJ.Commerce.Web.API_HostAddress = http://localhost:5211
+
+GET {{SHJ.Commerce.Web.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

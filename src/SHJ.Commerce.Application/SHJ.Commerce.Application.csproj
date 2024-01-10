@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Services\Cms\v1\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SHJ.BaseFramework.AspNet" Version="1.5.0" />
+    <PackageReference Include="SHJ.BaseSwagger" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SHJ.Commerce.ApplicationContracts\SHJ.Commerce.ApplicationContracts.csproj" />
+    <ProjectReference Include="..\SHJ.Commerce.Infrastructure\SHJ.Commerce.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
