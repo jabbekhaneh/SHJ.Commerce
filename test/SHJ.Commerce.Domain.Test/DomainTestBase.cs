@@ -1,4 +1,5 @@
-﻿using SHJ.Commerce.Domain.Test.Configurations;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SHJ.Commerce.Domain.Test.Configurations;
 using SHJ.Commerce.Shared.Common;
 
 namespace SHJ.Commerce.Domain.Test;

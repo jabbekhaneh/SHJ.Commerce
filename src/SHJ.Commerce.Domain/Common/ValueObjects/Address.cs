@@ -35,6 +35,6 @@ public class Address : ValueObject
         yield return ZipCode;
         yield return State;
         yield return Latitude;
-        yield return Longitude;s
+        yield return Longitude;
     }
 }
