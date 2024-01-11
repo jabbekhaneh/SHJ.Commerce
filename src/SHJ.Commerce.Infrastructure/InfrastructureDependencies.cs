@@ -1,6 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using SHJ.BaseFramework.EntityFrameworkCore;
 using SHJ.BaseFramework.Repository;
+using SHJ.BaseFramework.Shared;
 using SHJ.Commerce.Infrastructure.Common;
 using SHJ.Commerce.Infrastructure.EntityFrameworkCore;
 using SHJ.Commerce.Shared.Common;
@@ -12,11 +15,12 @@ public static class InfrastructureDependencies
     public static IServiceCollection BuildInfrastructure(this IServiceCollection services)
     {
         services.RegisterPages();
+        
 
         services.RegisterEntityframework();
 
         services.RegisterIdentity();
-
+        
         return services;
     }
 

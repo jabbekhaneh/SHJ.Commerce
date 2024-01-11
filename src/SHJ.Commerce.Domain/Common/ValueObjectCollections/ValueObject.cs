@@ -1,4 +1,4 @@
-﻿namespace SHJ.Commerce.Domain.Common.ValueObjects;
+﻿namespace SHJ.Commerce.Domain.Common.ValueObjectCollections;
 
 public abstract class ValueObject
 {
@@ -36,5 +36,5 @@ public abstract class ValueObject
             .Select(x => x != null ? x.GetHashCode() : 0)
             .Aggregate((x, y) => x ^ y);
     }
-    // Other utility methods
+    
 }

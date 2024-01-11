@@ -1,18 +1,20 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using SHJ.Commerce.Domain.Common.ValueObjects;
+using SHJ.Commerce.Domain.Common.ValueObjectCollections;
 using System.ComponentModel.DataAnnotations;
 
 namespace SHJ.Commerce.Domain.Aggregates.Identity;
 
 public class User : IdentityUser<Guid>
 {
+    public User()
+    {
+        UserAddress = new List<UserAddress>();
+    }
     [MaxLength(256)]
     public virtual string? FirstName { get; set; } = string.Empty;
 
     [MaxLength(256)]
     public virtual string? LastName { get; set; } = string.Empty;
-
-    public virtual Address? Address { get; set; }
 
     [MaxLength(256)]
     public virtual string? Job { get; set; } = string.Empty;
@@ -31,4 +33,6 @@ public class User : IdentityUser<Guid>
     public virtual string? CompanyName { get; set; } = string.Empty;
 
     public virtual string? Avatar { get; set; } = string.Empty;
+
+    public virtual List<UserAddress> UserAddress { get; set; } 
 }

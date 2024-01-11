@@ -27,7 +27,9 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, Guid, UserClai
     private IOptions<BaseOptions> Options;
     private IBaseClaimService ClaimService;
     public ApplicationDbContext() { }
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IBaseClaimService claimService, IOptions<BaseOptions> baseOptions) : base(options)
+
+    public ApplicationDbContext(DbContextOptions options):base(options) { }
+    public ApplicationDbContext(DbContextOptions options, IBaseClaimService claimService, IOptions<BaseOptions> baseOptions) : base(options)
     {
         Options = baseOptions;
         ClaimService = claimService;
@@ -40,18 +42,16 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, Guid, UserClai
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.BuildApplyConfiguration();
-        builder.Indexes();
-        builder.GenerateData();
-        builder.QueryFilters();
-
+        builder.IndexesConfiguration();
+        builder.GenerateDataConfiguration();
+        builder.QueryFiltersConfiguration();
 
         base.OnModelCreating(builder);
     }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        //AddMigarion(optionsBuilder);
         optionsBuilder.ConfigurationOptionsBuilder(Options);
-
         base.OnConfiguring(optionsBuilder);
     }
 
@@ -75,5 +75,8 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, Guid, UserClai
     }
 
     #endregion
-
+    private static void AddMigarion(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer("data source =.; initial catalog =dbCommerce; integrated security = True; MultipleActiveResultSets=True");
+    }
 }

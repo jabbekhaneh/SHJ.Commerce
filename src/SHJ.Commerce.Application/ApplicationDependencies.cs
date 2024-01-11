@@ -14,7 +14,8 @@ public static class ApplicationDependencies
     public static IServiceCollection BuildApplication([NotNull] this IServiceCollection services, IConfiguration configuration)
     {
 
-        services.RegisterIdentity();
+        services.BuildInfrastructure(); ;
+        
 
         services.AddSHJExceptionHandler(option => { });
 

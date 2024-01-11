@@ -14,21 +14,22 @@ internal static class ApplicationDbContextConfigurations
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
-    public static void Indexes(this ModelBuilder modelBuilder)
+    public static void IndexesConfiguration(this ModelBuilder modelBuilder)
     {
-      
+        
     }
+    
 
-    public static void QueryFilters(this ModelBuilder modelBuilder)
+    public static void QueryFiltersConfiguration(this ModelBuilder modelBuilder)
     {
         //modelBuilder.Entity<Page>().HasQueryFilter(it => !it.IsDeleted);
     }
 
-    public static void GenerateData(this ModelBuilder modelBuilder)
+    public static void GenerateDataConfiguration(this ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Permission>().HasData(
-            new Permission { },
-            new Permission { });
+        //modelBuilder.Entity<Permission>().HasData(
+        //    new Permission {  },
+        //    new Permission { });
 
     }
     
@@ -44,13 +45,11 @@ internal static class ApplicationDbContextConfigurations
         {
             string connectionString = Options.SetConnectionString();
             optionsBuilder.UseSqlServer(connectionString);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(connectionString);
+            
         }
         else if (Options.Value.DatabaseType == DatabaseType.Manual)
         {
             optionsBuilder.UseSqlServer(Options.Value.ManualConnectionString);
-            Console.ForegroundColor = ConsoleColor.Yellow;
 
         }
 

@@ -28,6 +28,8 @@ public static class HostExtentions
     //##################  Application Builder  ####################
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
+        app.Services.InitializeDatabase();
+
         app.UseApplication();
 
         if (app.Environment.IsDevelopment())
@@ -35,7 +37,6 @@ public static class HostExtentions
             app.RegisterUseSwaggerAndUI();
         }
 
-        app.Services.InitializeDatabase();
 
         app.MapControllers();
         return app;
@@ -53,7 +54,7 @@ public static class HostExtentions
         .WriteTo.File("Logs/logs.txt")
         .WriteTo.Console()
         .CreateLogger();
-        Log.Information("Starting SHJ.BaseArchitecture.Web.API");
+        Log.Information("Starting SHJ.Commerce.Web.API");
         builder.Host.UseSerilog();
         return builder;
     }
