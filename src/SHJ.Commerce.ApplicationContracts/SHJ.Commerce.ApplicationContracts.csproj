@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SHJ.BaseFramework.Shared" Version="1.5.0" />
+    <PackageReference Include="SHJ.BaseFramework.Shared" Version="1.5.2" />
   </ItemGroup>
 
 </Project>

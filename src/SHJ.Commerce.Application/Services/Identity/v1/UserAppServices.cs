@@ -1,19 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using SHJ.BaseFramework.AspNet.Services;
 using SHJ.BaseFramework.Shared;
 using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
+using SHJ.Commerce.Domain.Aggregates.Identity;
 
 namespace SHJ.Commerce.Application.Services.Identity.v1;
 
-[ControllerName("User")]
+[BaseControllerName("User")]
 public class UserAppServices : BaseAppService, IUserAppServices
 {
-    public UserAppServices()
+    private readonly UserManager<User> _userManager;
+    public UserAppServices(UserManager<User> userManager)
     {
-
+        _userManager = userManager;
     }
 
-    [HttpPost,ActionName("Roles")]
+    [HttpPost("Roles")]
     public Task<BaseResult> AddRoles(AddRoleToUserDto input)
     {
         throw new NotImplementedException();
@@ -25,23 +28,24 @@ public class UserAppServices : BaseAppService, IUserAppServices
         throw new NotImplementedException();
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public Task<BaseResult> Delete(Guid id)
     {
         throw new NotImplementedException();
     }
 
-    [HttpDelete,ActionName("Roles")]
+    [HttpDelete("{id}/Roles")]
     public Task<BaseResult> DeleteRoles(DeleteRoleToUserDto input)
     {
         throw new NotImplementedException();
     }
 
-    [HttpDelete("{id}")]
+    [HttpPut("{id}")]
     public Task<BaseResult<UserDto>> Edit(Guid id, EditUserDto input)
     {
         throw new NotImplementedException();
     }
+
     [HttpGet]
     public Task<BaseResult<UsersDto>> Get(BaseFilterDto input)
     {
@@ -51,6 +55,7 @@ public class UserAppServices : BaseAppService, IUserAppServices
     [HttpGet("{id}")]
     public Task<BaseResult<UserDto>> Get(Guid id)
     {
+        var query = _userManager.Users;
         throw new NotImplementedException();
     }
 }

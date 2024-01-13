@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SHJ.Commerce.Domain;
 using SHJ.ExceptionHandler;
 using System.Collection;
 
@@ -24,28 +25,20 @@ public static class IdentityExtensions
     }
 
 
-    public static string CheckSignInResult(this SignInResult signInResult)
+    public static void CheckSignInResult(this SignInResult signInResult)
     {
         if (signInResult.Succeeded)
-        {
-            return "Succeeded";
-        }
+            return;
 
         if (signInResult.IsLockedOut)
-        {
-
-            return "IsLockedOut";
-        }
+            throw new BaseBusinessException(GlobalIdentityErrors.IsLockedOut, "IsLockedOut");
 
         if (signInResult.IsNotAllowed)
-        {
-            return "IsNotAllowed";
-        }
+            throw new BaseBusinessException(GlobalIdentityErrors.IsNotAllowed, "IsNotAllowed");
 
         if (signInResult.RequiresTwoFactor)
-        {
-            return "RequiresTwoFactor";
-        }
-        return "Unknown";
+            throw new BaseBusinessException(GlobalIdentityErrors.RequiresTwoFactor, "RequiresTwoFactor");
+
+        throw new BaseBusinessException(GlobalIdentityErrors.Name);
     }
 }

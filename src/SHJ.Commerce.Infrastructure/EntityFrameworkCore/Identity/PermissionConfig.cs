@@ -24,11 +24,8 @@ internal class PermissionConfig : IEntityTypeConfiguration<Permission>
         builder.HasMany(_ => _.Permissions)
                .WithOne()
                .HasForeignKey(_ => _.ParentId)
-               .OnDelete(DeleteBehavior.Cascade);
+               .OnDelete(DeleteBehavior.Restrict);
 
-
-
-        builder.HasData(
-            new Permission(),);
+        
     }
 }

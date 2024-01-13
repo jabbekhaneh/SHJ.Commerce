@@ -7,8 +7,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="SHJ.BaseFramework.DependencyInjection" Version="1.5.0" />
-		<PackageReference Include="SHJ.BaseFramework.Domain" Version="1.5.0" />
+		<PackageReference Include="SHJ.BaseFramework.DependencyInjection" Version="1.5.2" />
+		<PackageReference Include="SHJ.BaseFramework.Domain" Version="1.5.2" />
 		<PackageReference Include="SHJ.ExceptionHandler" Version="1.0.5" />
 		<PackageReference Include="SHJ.Toolkits" Version="1.0.0" />
 	</ItemGroup>

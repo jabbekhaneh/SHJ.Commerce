@@ -9,7 +9,7 @@ using SHJ.ExceptionHandler;
 
 namespace SHJ.Commerce.Application.Services.Identity.v1;
 
-[ControllerName("Account")]
+[BaseControllerName("Account")]
 public class AccountAppServices : BaseAppService, IAccountAppServices
 {
     private readonly SignInManager<User> _signInManager;
@@ -24,32 +24,32 @@ public class AccountAppServices : BaseAppService, IAccountAppServices
     public async Task<BaseResult> SignIn(SignIn input)
     {
         if (_signInManager.IsSignedIn(User))
-            throw new BaseBusinessException(GlobalDomainErrors.AccessDenied, "Access Denied");
+            throw new BaseBusinessException(GlobalIdentityErrors.AccessDenied, "AccessDenied");
 
         if (!ModelState.IsValid)
-            return ReturnResult(ModelState);
+            return await FailRequestAsync(ModelState);
 
         var result = await _signInManager
             .PasswordSignInAsync(input.UserName, input.Password, input.IsPersistent, true);
-
-        if (result.IsLockedOut)
-            throw new BaseBusinessException(GlobalDomainErrors.IsLockedOut, "User Is LockedOut");
-        if (result.IsNotAllowed)
-            throw new BaseBusinessException(GlobalDomainErrors.IsNotAllowed, "User Is NotAllowed");
         
-        return await ResultAsync(result.CheckSignInResult());
+        result.CheckSignInResult();
 
+        return await OkAsync();
     }
 
-    [HttpPost, ActionName("SignOut")]
+    [HttpPost("Signout")]
     public async Task Signout()
     {
         await _signInManager.SignOutAsync();
     }
 
-    [HttpPost, ActionName("SignUp")]
+    [HttpPost("SignUp")]
     public async Task<BaseResult> SignUp(SignUp input)
     {
+
+        if (!ModelState.IsValid)
+            return await FailRequestAsync(ModelState);
+
         var newUser = new User()
         {
             Email = input.Email,
@@ -61,9 +61,7 @@ public class AccountAppServices : BaseAppService, IAccountAppServices
 
         var result = await _userManager.CreateAsync(newUser);
         result.CheckErrors();
-
-        return ReturnResult(newUser);
+        return await ReturnResultAsync(newUser);
     }
-
 
 }

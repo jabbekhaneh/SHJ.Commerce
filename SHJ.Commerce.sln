@@ -5,23 +5,25 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{25C40AE4-4F94-424E-8AF3-0A25E0C1FCD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHJ.Commerce.Domain", "src\SHJ.Commerce.Domain\SHJ.Commerce.Domain.csproj", "{5FA36106-9B94-466F-BCB3-10B3619C6CF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHJ.Commerce.Domain", "src\SHJ.Commerce.Domain\SHJ.Commerce.Domain.csproj", "{5FA36106-9B94-466F-BCB3-10B3619C6CF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHJ.Commerce.Shared", "src\SHJ.Commerce.Shared\SHJ.Commerce.Shared.csproj", "{41F9615E-31C1-48C8-81E7-697C39608434}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHJ.Commerce.Shared", "src\SHJ.Commerce.Shared\SHJ.Commerce.Shared.csproj", "{41F9615E-31C1-48C8-81E7-697C39608434}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHJ.Commerce.Infrastructure", "src\SHJ.Commerce.Infrastructure\SHJ.Commerce.Infrastructure.csproj", "{24854789-C2E0-4DA7-ADF8-524ACF6FF5B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHJ.Commerce.Infrastructure", "src\SHJ.Commerce.Infrastructure\SHJ.Commerce.Infrastructure.csproj", "{24854789-C2E0-4DA7-ADF8-524ACF6FF5B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHJ.Commerce.Application", "src\SHJ.Commerce.Application\SHJ.Commerce.Application.csproj", "{4F08E606-24E0-4F50-9DE8-790CFAB3674C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHJ.Commerce.Application", "src\SHJ.Commerce.Application\SHJ.Commerce.Application.csproj", "{4F08E606-24E0-4F50-9DE8-790CFAB3674C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHJ.Commerce.ApplicationContracts", "src\SHJ.Commerce.ApplicationContracts\SHJ.Commerce.ApplicationContracts.csproj", "{ADB3261C-928D-4CBE-8FEE-A7B4619EE273}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHJ.Commerce.ApplicationContracts", "src\SHJ.Commerce.ApplicationContracts\SHJ.Commerce.ApplicationContracts.csproj", "{ADB3261C-928D-4CBE-8FEE-A7B4619EE273}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHJ.Commerce.Web.API", "src\SHJ.Commerce.Web.API\SHJ.Commerce.Web.API.csproj", "{324521D5-4B7F-4484-99F7-B8731B4B8927}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHJ.Commerce.Web.API", "src\SHJ.Commerce.Web.API\SHJ.Commerce.Web.API.csproj", "{324521D5-4B7F-4484-99F7-B8731B4B8927}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{351F9B9B-7E3A-469D-B846-BC1E1BDE407A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHJ.Commerce.Domain.Test", "test\SHJ.Commerce.Domain.Test\SHJ.Commerce.Domain.Test.csproj", "{917B4A1C-0A36-440E-A70F-08B9D22AE0F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHJ.Commerce.Domain.Test", "test\SHJ.Commerce.Domain.Test\SHJ.Commerce.Domain.Test.csproj", "{917B4A1C-0A36-440E-A70F-08B9D22AE0F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHJ.Commerce.Application.Test", "test\SHJ.Commerce.Application.Test\SHJ.Commerce.Application.Test.csproj", "{787AC997-36F2-4C87-8166-3C0AE85D16B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHJ.Commerce.Application.Test", "test\SHJ.Commerce.Application.Test\SHJ.Commerce.Application.Test.csproj", "{787AC997-36F2-4C87-8166-3C0AE85D16B0}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6CC8958E-968C-46B7-BA7F-30308D45B5D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{787AC997-36F2-4C87-8166-3C0AE85D16B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{787AC997-36F2-4C87-8166-3C0AE85D16B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{787AC997-36F2-4C87-8166-3C0AE85D16B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CC8958E-968C-46B7-BA7F-30308D45B5D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CC8958E-968C-46B7-BA7F-30308D45B5D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CC8958E-968C-46B7-BA7F-30308D45B5D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CC8958E-968C-46B7-BA7F-30308D45B5D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

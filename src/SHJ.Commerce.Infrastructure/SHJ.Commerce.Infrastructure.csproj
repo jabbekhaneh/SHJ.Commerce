@@ -8,8 +8,8 @@
 
   <ItemGroup>
 	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
-    <PackageReference Include="SHJ.BaseFramework.Dapper" Version="1.5.0" />
-    <PackageReference Include="SHJ.BaseFramework.EntityFrameworkCore" Version="1.5.0" />
+    <PackageReference Include="SHJ.BaseFramework.Dapper" Version="1.5.2" />
+    <PackageReference Include="SHJ.BaseFramework.EntityFrameworkCore" Version="1.5.2" />
   </ItemGroup>
 
   <ItemGroup>

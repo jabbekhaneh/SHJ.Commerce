@@ -8,9 +8,9 @@ public interface ISeadData
     /// <summary>
     /// 
     /// </summary>
-    void Initialize();
+    Task Initialize();
     /// <summary>
     /// 
     /// </summary>
-    void SeedData();
+    Task SeedData();
 }

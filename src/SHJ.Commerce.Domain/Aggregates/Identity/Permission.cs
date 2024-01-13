@@ -1,4 +1,6 @@
-﻿namespace SHJ.Commerce.Domain.Aggregates.Identity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SHJ.Commerce.Domain.Aggregates.Identity;
 
 public class Permission : BaseEntity<Guid>
 {
@@ -18,5 +20,6 @@ public class Permission : BaseEntity<Guid>
     public virtual string? ParentName { get; private set; } = string.Empty;
     public virtual Guid? ParentId { get; private set; }
 
+    [ForeignKey("ParentId")]
     public virtual List<Permission> Permissions { get; set; } 
 }

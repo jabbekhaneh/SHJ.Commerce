@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SHJ.Commerce.Domain.Aggregates.Identity;
 
-public class User : IdentityUser<Guid>
+public class User : IdentityUser<Guid> 
 {
     public User()
     {
