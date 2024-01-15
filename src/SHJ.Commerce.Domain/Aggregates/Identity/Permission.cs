@@ -8,7 +8,7 @@ public class Permission : BaseEntity<Guid>
 
     public Permission(string name, string? displayName, string? parentName, Guid? parentId)
     {
-        Name = name;
+        Name = name.ToLower();
         DisplayName = displayName;
         ParentName = parentName;
         ParentId = parentId;

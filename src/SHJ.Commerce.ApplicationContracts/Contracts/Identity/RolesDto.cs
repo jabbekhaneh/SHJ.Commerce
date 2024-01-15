@@ -9,5 +9,6 @@ namespace SHJ.Commerce.ApplicationContracts.Contracts.Identity
             Roles = new();
         }
         public List<RoleDto> Roles { get; set; }
+        public int PageSize { get; set; }
     }
 }

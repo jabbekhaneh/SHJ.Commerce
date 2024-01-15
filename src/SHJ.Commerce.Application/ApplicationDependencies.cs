@@ -11,12 +11,12 @@ namespace SHJ.Commerce.Application;
 
 public static class ApplicationDependencies
 {
+
     public static IServiceCollection BuildApplication([NotNull] this IServiceCollection services, IConfiguration configuration)
     {
 
         services.BuildInfrastructure(); ;
         
-
         services.AddSHJExceptionHandler(option => { });
 
         var sqlOption = configuration.GetValueBaseSqlOptions();
