@@ -26,9 +26,9 @@ internal static class HttpHelper
     }
 }
 
-public class HttpResponseViewModel<T>
+public class BaseHttpResponseTestViewModel<T>
 {
-    public HttpResponseViewModel()
+    public BaseHttpResponseTestViewModel()
     {
         Messages = new List<string>();
     }
@@ -37,6 +37,23 @@ public class HttpResponseViewModel<T>
     public int Status { get; set; }
 
     public T? Result { get; set; }
+
+    public List<string> Messages { get; set; }
+
+
+}
+
+public class BaseHttpResponseTestViewModel
+{
+    public BaseHttpResponseTestViewModel()
+    {
+        Messages = new List<string>();
+    }
+    public bool IsSuccess { get; set; }
+
+    public int Status { get; set; }
+
+    public object? Result { get; set; }
 
     public List<string> Messages { get; set; }
 

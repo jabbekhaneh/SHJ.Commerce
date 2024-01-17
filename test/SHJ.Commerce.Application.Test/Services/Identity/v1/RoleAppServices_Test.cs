@@ -3,6 +3,7 @@ using SHJ.Commerce.Application.Test.Configurations;
 using SHJ.Commerce.Application.Test.Configurations.Fixtures;
 using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 using System.Net;
+using System.Net.Mail;
 
 namespace SHJ.Commerce.Application.Test.Services.Identity.v1;
 
@@ -20,7 +21,7 @@ public class RoleAppServices_Test : BaseControllerTests
     {
         //arrange
         var permissions = await RequestHttp.GetAsync(ApiConstUrls.PermissionAppServices);
-        var response = await permissions.DeserializeResponseAsync<HttpResponseViewModel<List<PermissionDto>>>();
+        var response = await permissions.DeserializeResponseAsync<BaseHttpResponseTestViewModel<List<PermissionDto>>>();
         permissions.StatusCode.Should().Be(HttpStatusCode.OK);
 
         var input = new CreateRoleDto
@@ -53,6 +54,43 @@ public class RoleAppServices_Test : BaseControllerTests
 
         //assert
         actual.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
+    }
+
+    [Fact]
+    public async Task OnDeleteRole_WheneExecuteController_ShouldReturnOK()
+    {
+
+        //arrange
+        var input = new CreateRoleDto
+        {
+            Name = "Admin-Delete",
+        };
+        var response = await RequestHttp.PostAsync(_Sut, HttpHelper.GetJsonHttpContent(input));
+        var result = await response.DeserializeResponseAsync<BaseHttpResponseTestViewModel<Guid>>();
+
+        //act
+        var actual = await RequestHttp.DeleteAsync(_Sut + "/" + result.Result);
+
+        //assert
+        actual.StatusCode.Should().Be(HttpStatusCode.OK);
+    }
+
+    [Fact]
+    public async Task OnDeleteRole_WheneExecuteController_ShouldIdentityError_NotFoundRole()
+    {
+
+        //arrange
+        Guid fakeId = Guid.NewGuid();
+
+        //act
+        var actual = await RequestHttp.DeleteAsync(_Sut + "/" + fakeId);
+
+        //assert
+        actual.StatusCode.Should().Be(HttpStatusCode.OK);
+        var response = actual.DeserializeResponseAsync<BaseHttpResponseTestViewModel>();
+        var executed = (int) HttpStatusCode.NotFound;
+        response.Result.Status.Should().Be(executed);
+        
     }
 
 }

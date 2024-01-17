@@ -39,7 +39,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
 
         await AddClaims(input, newRole);
 
-        return await OkAsync();
+        return await ResultAsync(newRole.Id);
     }
 
     [HttpDelete("{id}")]
