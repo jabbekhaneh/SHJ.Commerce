@@ -5,7 +5,7 @@ namespace SHJ.Commerce.Application.Test.Configurations.Fixtures;
 public class MssqlContainerFixture
 {
     public MsSqlContainer Container { get; }
-    public string DataSource { get; } = "localhost\\MsSqLServer2019,8002";
+    public string DataSource { get; } = "localhost\\MsSqLServer2019,8051";
 
     public string DatabaseName { get; } = "dbTestApplication";
     public string UserID { get; } = "sa";

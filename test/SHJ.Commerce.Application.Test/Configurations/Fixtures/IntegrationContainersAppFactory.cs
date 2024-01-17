@@ -31,7 +31,15 @@ public class IntegrationContainersAppFactory : WebApplicationFactory<Program>, I
             services.AddSHJBaseFrameworkAspNet(option =>
             {
                 option.DatabaseType = DatabaseType.Manual;
+
                 option.Environment = ASPNET_EnvironmentType.Development;
+                option.SqlOptions = new BaseSqlServerOptions
+                {
+                    DataSource=SqlContainerFixture.DataSource,
+                    DatabaseName=SqlContainerFixture.DatabaseName,
+                    UserID= SqlContainerFixture.UserID,
+                    Password = SqlContainerFixture.Password,
+                };
                 option.ManualConnectionString = SqlContainerFixture.GetConnectionString();
 
             });

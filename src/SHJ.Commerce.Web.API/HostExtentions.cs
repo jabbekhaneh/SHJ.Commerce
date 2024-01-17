@@ -1,8 +1,11 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using Serilog.Events;
+using SHJ.BaseFramework.AspNet;
 using SHJ.BaseFramework.DependencyInjection.Modules;
+using SHJ.BaseFramework.Shared;
 using SHJ.BaseSwagger;
 using SHJ.Commerce.Application;
 using SHJ.Commerce.Infrastructure;
@@ -18,6 +21,22 @@ public static class HostExtentions
         builder.Services.RegisterSwagger(options =>
         {
             options.ProjectName = "*** SHJ Commerce API ***";
+        });
+        var sqlOption = builder.Configuration.GetValueBaseSqlOptions();
+
+
+        builder.Services.AddSHJBaseFrameworkAspNet(option =>
+        {
+            option.DatabaseType = DatabaseType.MsSql;
+            option.Environment = ASPNET_EnvironmentType.Development;
+            option.SqlOptions = new BaseSqlServerOptions
+            {
+                ConnectToServer = DatabaseConnectType.SqlServerAuthentication,
+                DatabaseName = sqlOption.DatabaseName,
+                DataSource = sqlOption.DataSource,
+                UserID = sqlOption.UserID,
+                Password = sqlOption.Password,
+            };
         });
 
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())

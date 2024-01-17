@@ -7,35 +7,14 @@ using SHJ.BaseFramework.Shared;
 using SHJ.Commerce.Infrastructure;
 using SHJ.ExceptionHandler;
 using System.Diagnostics.CodeAnalysis;
+
 namespace SHJ.Commerce.Application;
 
 public static class ApplicationDependencies
 {
-
     public static IServiceCollection BuildApplication([NotNull] this IServiceCollection services, IConfiguration configuration)
     {
-
-        services.BuildInfrastructure(); ;
-        
-        services.AddSHJExceptionHandler(option => { });
-
-        var sqlOption = configuration.GetValueBaseSqlOptions();
-
-
-        services.AddSHJBaseFrameworkAspNet(option =>
-        {
-            option.DatabaseType = DatabaseType.MsSql;
-            option.Environment = ASPNET_EnvironmentType.Development;
-            option.SqlOptions = new BaseSqlServerOptions
-            {
-                ConnectToServer = DatabaseConnectType.SqlServerAuthentication,
-                DatabaseName = sqlOption.DatabaseName,
-                DataSource = sqlOption.DataSource,
-                UserID = sqlOption.UserID,
-                Password = sqlOption.Password,
-            };
-        });
-
+        services.BuildInfrastructure(); 
         services.AddBaseMvcApplication();
         services.AddBaseCorsConfig();
 

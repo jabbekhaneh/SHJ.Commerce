@@ -32,15 +32,29 @@ public class SeadData : ISeadData
         {
             using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
             {
-                await InitializeUserAdmin(context);
+                await InitializePermissionsAsync(context);
+                //await InitializeUserAdmin(context);
 
+                await context.SaveChangesAsync();
             }
         }
     }
 
-    private static async Task InitializeUserAdmin(ApplicationDbContext? context)
+    private static async Task InitializePermissionsAsync(ApplicationDbContext? context)
     {
-        if (!await context.Users.AnyAsync(_=>_.UserName == UserAdminInfo.AdminUserNameDefaultValue))
+        var permissions = new List<Permission>();
+        if (!context.Permissions.Any())
+        {
+            permissions.Add(new Permission("Manager", "manager"));
+            permissions.Add(new Permission("Client", "client"));
+        }
+        await context.Permissions.AddRangeAsync(permissions);
+
+    }
+
+    private static async Task InitializeUserAdminAsync(ApplicationDbContext? context)
+    {
+        if (!await context.Users.AnyAsync(_ => _.UserName == UserAdminInfo.AdminUserNameDefaultValue))
         {
             var userAdmin = new User
             {

@@ -12,8 +12,8 @@ using SHJ.Commerce.Infrastructure.EntityFrameworkCore;
 namespace SHJ.Commerce.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240111162443_v0.0.0")]
-    partial class v000
+    [Migration("20240116202055_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,8 +71,6 @@ namespace SHJ.Commerce.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ParentId");
 
                     b.ToTable("Permissions");
                 });
@@ -251,6 +249,9 @@ namespace SHJ.Commerce.Infrastructure.Migrations
                     b.Property<string>("IP")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -357,14 +358,6 @@ namespace SHJ.Commerce.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("SHJ.Commerce.Domain.Aggregates.Identity.Permission", b =>
-                {
-                    b.HasOne("SHJ.Commerce.Domain.Aggregates.Identity.Permission", null)
-                        .WithMany("Permissions")
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("SHJ.Commerce.Domain.Aggregates.Identity.RoleClaim", b =>
                 {
                     b.HasOne("SHJ.Commerce.Domain.Aggregates.Identity.Role", null)
@@ -372,64 +365,6 @@ namespace SHJ.Commerce.Infrastructure.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("SHJ.Commerce.Domain.Aggregates.Identity.User", b =>
-                {
-                    b.OwnsOne("SHJ.Commerce.Domain.Common.ValueObjectCollections.Address", "DefualtAddress", b1 =>
-                        {
-                            b1.Property<Guid>("UserId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<string>("City")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("City");
-
-                            b1.Property<string>("Country")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("Country");
-
-                            b1.Property<string>("Latitude")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("Latitude");
-
-                            b1.Property<string>("Longitude")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("Longitude");
-
-                            b1.Property<string>("Province")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("Province");
-
-                            b1.Property<string>("Street")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("Street");
-
-                            b1.Property<string>("Title")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("Title");
-
-                            b1.Property<string>("ZipCode")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("ZipCode");
-
-                            b1.HasKey("UserId");
-
-                            b1.ToTable("AspNetUsers");
-
-                            b1.WithOwner()
-                                .HasForeignKey("UserId");
-                        });
-
-                    b.Navigation("DefualtAddress");
                 });
 
             modelBuilder.Entity("SHJ.Commerce.Domain.Aggregates.Identity.UserAddress", b =>
@@ -538,11 +473,6 @@ namespace SHJ.Commerce.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("SHJ.Commerce.Domain.Aggregates.Identity.Permission", b =>
-                {
-                    b.Navigation("Permissions");
                 });
 
             modelBuilder.Entity("SHJ.Commerce.Domain.Aggregates.Identity.User", b =>

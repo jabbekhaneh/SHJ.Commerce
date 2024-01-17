@@ -8,8 +8,6 @@ namespace SHJ.Commerce.ApplicationContracts.Contracts.Identity
         public CreateRoleDto()
         {
             Permissions = new();
-            if (Permissions.Count <= 0)
-                throw new ArgumentNullException(nameof(Permissions));
         }
 
         [Required, MaxLength(256)]

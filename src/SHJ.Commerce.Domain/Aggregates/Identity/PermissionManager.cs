@@ -8,6 +8,7 @@ public class PermissionManager : BaseDomainService<Permission>
     {
 
     }
+    
     public async Task<Permission> Create(Permission permission)
     {
         if (Query.Any(_ => _.Name == permission.Name))
@@ -16,5 +17,9 @@ public class PermissionManager : BaseDomainService<Permission>
         await CommandRepository.InsertAsync(permission);
         return permission;
     }
-
+    
+    public IQueryable<Permission> Permissions()
+    {
+        return Query;
+    }
 }

@@ -34,4 +34,8 @@
 		<ProjectReference Include="..\..\src\SHJ.Commerce.Web.API\SHJ.Commerce.Web.API.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Configurations\Extentions\" />
+	</ItemGroup>
+
 </Project>

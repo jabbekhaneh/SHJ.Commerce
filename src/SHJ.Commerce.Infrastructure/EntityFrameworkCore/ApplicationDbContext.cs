@@ -48,6 +48,7 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, Guid, UserClai
 
         base.OnModelCreating(builder);
     }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         //AddMigarion(optionsBuilder);

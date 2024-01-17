@@ -12,10 +12,13 @@ internal static class IdentityConfiguration
     public static IServiceCollection RegisterIdentity(this IServiceCollection services)
     {
 
-        
+
+        services.AddScoped<PermissionManager, PermissionManager>();
+
         services.AddIdentity<User, Role>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
+
 
         services.Configure<IdentityOptions>(options =>
         {
@@ -59,7 +62,7 @@ internal static class IdentityConfiguration
             option.LogoutPath = "/";
             option.AccessDeniedPath = "/";
             option.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-            option.Cookie.Name = "SHJ.BaseArchitecture.COOKIE";
+            option.Cookie.Name = "SHJ.BaseCommerce.COOKIE";
         });
         return services;
     }

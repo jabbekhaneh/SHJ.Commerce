@@ -2,17 +2,16 @@
 
 namespace SHJ.Commerce.Domain.Aggregates.Identity;
 
-public class Permission : BaseEntity<Guid>
+public class Permission : BaseEntity
 {
-    public Permission() { Permissions = new(); }
+    public Permission() { }
 
-    public Permission(string name, string? displayName, string? parentName, Guid? parentId)
+    public Permission(string name, string? displayName = default, string? parentName = default, Guid? parentId = default)
     {
         Name = name.ToLower();
         DisplayName = displayName;
         ParentName = parentName;
         ParentId = parentId;
-        Permissions = new();
     }
 
     public virtual string Name { get; private set; } = string.Empty;
@@ -20,6 +19,4 @@ public class Permission : BaseEntity<Guid>
     public virtual string? ParentName { get; private set; } = string.Empty;
     public virtual Guid? ParentId { get; private set; }
 
-    [ForeignKey("ParentId")]
-    public virtual List<Permission> Permissions { get; set; } 
 }

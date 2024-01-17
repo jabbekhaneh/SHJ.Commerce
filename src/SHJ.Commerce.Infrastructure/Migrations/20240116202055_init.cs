@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SHJ.Commerce.Infrastructure.Migrations
 {
-    public partial class v000 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,14 +30,6 @@ namespace SHJ.Commerce.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Province = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Latitude = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Longitude = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Job = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Age = table.Column<int>(type: "int", nullable: true),
                     Mobile = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
@@ -87,12 +79,6 @@ namespace SHJ.Commerce.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Permissions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Permissions_Permissions_ParentId",
-                        column: x => x.ParentId,
-                        principalTable: "Permissions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -216,6 +202,7 @@ namespace SHJ.Commerce.Infrastructure.Migrations
                     ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Latitude = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Longitude = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDefault = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -275,11 +262,6 @@ namespace SHJ.Commerce.Infrastructure.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Permissions_ParentId",
-                table: "Permissions",
-                column: "ParentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserAddress_UserId",

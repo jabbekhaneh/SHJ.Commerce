@@ -4,7 +4,7 @@ using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 using SHJ.Commerce.Shared.Common;
 using System.Net;
 
-namespace SHJ.Commerce.Application.Test.Services.Identity;
+namespace SHJ.Commerce.Application.Test.Services.Identity.v1;
 
 public class AccountAppServices_Test : BaseControllerTests
 {

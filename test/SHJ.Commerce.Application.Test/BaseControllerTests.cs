@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
+
 namespace SHJ.Commerce.Application.Test;
 
 public class BaseControllerTests : IClassFixture<IntegrationContainersAppFactory>

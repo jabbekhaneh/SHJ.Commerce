@@ -17,4 +17,9 @@
     <ProjectReference Include="..\SHJ.Commerce.Shared\SHJ.Commerce.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dapper\Identity\TextCommands\" />
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

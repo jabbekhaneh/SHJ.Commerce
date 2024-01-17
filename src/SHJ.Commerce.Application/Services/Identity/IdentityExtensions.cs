@@ -16,7 +16,7 @@ public static class IdentityExtensions
 
         if (identityResult.Errors == null)
         {
-            throw new ArgumentException("identityResult.Errors should not be null.");
+            throw new ArgumentException("identityResult.Errors is  null.");
         }
 
         throw new BaseBusinessException(

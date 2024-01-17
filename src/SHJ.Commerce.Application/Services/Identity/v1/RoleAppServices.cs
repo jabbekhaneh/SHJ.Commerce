@@ -27,6 +27,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
         if (!ModelState.IsValid)
             return await FailRequestAsync(ModelState);
 
+
         var newRole = new Role
         {
             Name = input.Name,

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SHJ.Commerce.Domain;
 using SHJ.Commerce.Domain.Aggregates.Identity;
 
-namespace SHJ.Commerce.Infrastructure.EntityFrameworkCore.Identity;
+namespace SHJ.Commerce.Infrastructure.EntityFrameworkCore.Identity.Configurations;
 
 internal class PermissionConfig : IEntityTypeConfiguration<Permission>
 {
@@ -21,11 +21,7 @@ internal class PermissionConfig : IEntityTypeConfiguration<Permission>
         builder.Property(_ => _.ParentName)
                .HasMaxLength(PortalConsts.DefualtMaxLenght);
 
-        builder.HasMany(_ => _.Permissions)
-               .WithOne()
-               .HasForeignKey(_ => _.ParentId)
-               .OnDelete(DeleteBehavior.Restrict);
 
-        
+
     }
 }

@@ -70,8 +70,6 @@ namespace SHJ.Commerce.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentId");
-
                     b.ToTable("Permissions");
                 });
 
@@ -358,14 +356,6 @@ namespace SHJ.Commerce.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("SHJ.Commerce.Domain.Aggregates.Identity.Permission", b =>
-                {
-                    b.HasOne("SHJ.Commerce.Domain.Aggregates.Identity.Permission", null)
-                        .WithMany("Permissions")
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
             modelBuilder.Entity("SHJ.Commerce.Domain.Aggregates.Identity.RoleClaim", b =>
                 {
                     b.HasOne("SHJ.Commerce.Domain.Aggregates.Identity.Role", null)
@@ -481,11 +471,6 @@ namespace SHJ.Commerce.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("SHJ.Commerce.Domain.Aggregates.Identity.Permission", b =>
-                {
-                    b.Navigation("Permissions");
                 });
 
             modelBuilder.Entity("SHJ.Commerce.Domain.Aggregates.Identity.User", b =>

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SHJ.Commerce.Domain.Aggregates.Identity;
 
-namespace SHJ.Commerce.Infrastructure.EntityFrameworkCore.Identity;
+namespace SHJ.Commerce.Infrastructure.EntityFrameworkCore.Identity.Configurations;
 
 internal class UserAddressConfig : IEntityTypeConfiguration<UserAddress>
 {
@@ -14,10 +14,10 @@ internal class UserAddressConfig : IEntityTypeConfiguration<UserAddress>
 
         builder.HasOne(_ => _.User)
                .WithMany(_ => _.UserAddress)
-               .HasForeignKey(_=>_.UserId)
+               .HasForeignKey(_ => _.UserId)
                .OnDelete(DeleteBehavior.Restrict);
 
-        
+
         builder.OwnsOne(_ => _.Address)
             .Property(_ => _.Title).HasColumnName("Title");
 

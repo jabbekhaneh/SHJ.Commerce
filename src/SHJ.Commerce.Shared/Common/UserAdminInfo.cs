@@ -9,3 +9,4 @@ public static class UserAdminInfo
     public const string AdminPasswordDefaultValue = "Aa-123456";
 
 }
+

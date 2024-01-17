@@ -1,0 +1,174 @@
+2024-01-16 09:38:03.720 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-01-16 12:11:49.455 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-01-16 12:11:54.169 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:11:54.371 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:11:55.799 -08:00 [ERR] Failed executing DbCommand (1,376ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [dbCommerce];
+2024-01-16 12:11:56.640 -08:00 [INF] User profile is available. Using 'C:\Users\Jabbekhaneh\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-01-16 12:13:58.524 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-01-16 12:13:59.652 -08:00 [FTL] Host terminated unexpectedly!
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API\Program.cs:line 8
+2024-01-16 12:14:00.764 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:14:01.004 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:14:21.890 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-01-16 12:14:23.630 -08:00 [FTL] Host terminated unexpectedly!
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API\Program.cs:line 8
+2024-01-16 12:14:25.447 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:14:26.682 -08:00 [ERR] Failed executing DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Permissions] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(256) NOT NULL,
+    [DisplayName] nvarchar(256) NULL,
+    [ParentName] nvarchar(256) NULL,
+    [ParentId] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [CreatedBy] nvarchar(max) NULL,
+    [DeletedTime] datetime2 NULL,
+    [DeletedBy] nvarchar(max) NULL,
+    [IsDeleted] bit NOT NULL,
+    [UpdateTime] datetime2 NULL,
+    [UpdateBy] nvarchar(max) NULL,
+    [IP] nvarchar(max) NULL,
+    CONSTRAINT [PK_Permissions] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Permissions_Permissions_ParentId] FOREIGN KEY ([ParentId]) REFERENCES [Permissions] ([Id]) ON DELETE CASCADE
+);
+2024-01-16 12:15:14.788 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-01-16 12:15:15.995 -08:00 [FTL] Host terminated unexpectedly!
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API\Program.cs:line 8
+2024-01-16 12:15:17.154 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:15:17.493 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:15:42.480 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-01-16 12:15:43.919 -08:00 [FTL] Host terminated unexpectedly!
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API\Program.cs:line 8
+2024-01-16 12:15:45.255 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:15:46.313 -08:00 [ERR] Failed executing DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Permissions] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(256) NOT NULL,
+    [DisplayName] nvarchar(256) NULL,
+    [ParentName] nvarchar(256) NULL,
+    [ParentId] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [CreatedBy] nvarchar(max) NULL,
+    [DeletedTime] datetime2 NULL,
+    [DeletedBy] nvarchar(max) NULL,
+    [IsDeleted] bit NOT NULL,
+    [UpdateTime] datetime2 NULL,
+    [UpdateBy] nvarchar(max) NULL,
+    [IP] nvarchar(max) NULL,
+    CONSTRAINT [PK_Permissions] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Permissions_Permissions_ParentId] FOREIGN KEY ([ParentId]) REFERENCES [Permissions] ([Id]) ON DELETE CASCADE
+);
+2024-01-16 12:17:27.903 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-01-16 12:17:29.394 -08:00 [FTL] Host terminated unexpectedly!
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API\Program.cs:line 8
+2024-01-16 12:17:30.793 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:17:31.233 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:17:56.993 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-01-16 12:17:58.472 -08:00 [FTL] Host terminated unexpectedly!
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API\Program.cs:line 8
+2024-01-16 12:18:00.086 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:18:01.421 -08:00 [ERR] Failed executing DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Permissions] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(256) NOT NULL,
+    [DisplayName] nvarchar(256) NULL,
+    [ParentName] nvarchar(256) NULL,
+    [ParentId] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [CreatedBy] nvarchar(max) NULL,
+    [DeletedTime] datetime2 NULL,
+    [DeletedBy] nvarchar(max) NULL,
+    [IsDeleted] bit NOT NULL,
+    [UpdateTime] datetime2 NULL,
+    [UpdateBy] nvarchar(max) NULL,
+    [IP] nvarchar(max) NULL,
+    CONSTRAINT [PK_Permissions] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Permissions_Permissions_ParentId] FOREIGN KEY ([ParentId]) REFERENCES [Permissions] ([Id]) ON DELETE CASCADE
+);
+2024-01-16 12:19:06.014 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-01-16 12:19:07.461 -08:00 [FTL] Host terminated unexpectedly!
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API\Program.cs:line 8
+2024-01-16 12:19:08.669 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:19:09.381 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:19:10.879 -08:00 [ERR] Failed executing DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Permissions] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(256) NOT NULL,
+    [DisplayName] nvarchar(256) NULL,
+    [ParentName] nvarchar(256) NULL,
+    [ParentId] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [CreatedBy] nvarchar(max) NULL,
+    [DeletedTime] datetime2 NULL,
+    [DeletedBy] nvarchar(max) NULL,
+    [IsDeleted] bit NOT NULL,
+    [UpdateTime] datetime2 NULL,
+    [UpdateBy] nvarchar(max) NULL,
+    [IP] nvarchar(max) NULL,
+    CONSTRAINT [PK_Permissions] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Permissions_Permissions_ParentId] FOREIGN KEY ([ParentId]) REFERENCES [Permissions] ([Id]) ON DELETE CASCADE
+);
+2024-01-16 12:20:52.117 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-01-16 12:20:53.217 -08:00 [FTL] Host terminated unexpectedly!
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API\Program.cs:line 8
+2024-01-16 12:20:54.498 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:20:54.884 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-01-16 12:21:20.497 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-01-16 12:21:22.382 -08:00 [FTL] Host terminated unexpectedly!
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API\Program.cs:line 8
+2024-01-16 12:21:24.303 -08:00 [WRN] No store type was specified for the decimal property 'Wallet' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
