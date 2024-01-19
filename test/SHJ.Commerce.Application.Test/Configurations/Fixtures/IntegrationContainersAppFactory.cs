@@ -5,12 +5,16 @@ using Microsoft.Extensions.DependencyInjection;
 using SHJ.Commerce.Application.Test.Configurations.Fakes;
 using SHJ.BaseFramework.AspNet;
 using SHJ.BaseFramework.Shared;
+using SHJ.Commerce.Domain.Aggregates.Identity;
+using SHJ.Commerce.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace SHJ.Commerce.Application.Test.Configurations.Fixtures;
 
 public class IntegrationContainersAppFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
     public MssqlContainerFixture SqlContainerFixture { get; }
+
     public IntegrationContainersAppFactory()
     {
         SqlContainerFixture = new MssqlContainerFixture();
@@ -28,20 +32,10 @@ public class IntegrationContainersAppFactory : WebApplicationFactory<Program>, I
         builder.ConfigureTestServices(services =>
         {
             var serviceProvider = services.BuildServiceProvider();
-            services.AddSHJBaseFrameworkAspNet(option =>
+
+            services.RegisterEntityframework(options =>
             {
-                option.DatabaseType = DatabaseType.Manual;
-
-                option.Environment = ASPNET_EnvironmentType.Development;
-                option.SqlOptions = new BaseSqlServerOptions
-                {
-                    DataSource=SqlContainerFixture.DataSource,
-                    DatabaseName=SqlContainerFixture.DatabaseName,
-                    UserID= SqlContainerFixture.UserID,
-                    Password = SqlContainerFixture.Password,
-                };
-                option.ManualConnectionString = SqlContainerFixture.GetConnectionString();
-
+                options.UseSqlServer(SqlContainerFixture.GetConnectionString);
             });
             services.AddScoped<IBaseClaimService, FakeClaimService>();
         });
@@ -57,6 +51,6 @@ public class IntegrationContainersAppFactory : WebApplicationFactory<Program>, I
         await SqlContainerFixture.Container.StopAsync();
     }
 
-
+    
 
 }

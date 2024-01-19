@@ -12,6 +12,7 @@ namespace SHJ.Commerce.ApplicationContracts.Contracts.Identity
 
         [Required, MaxLength(256)]
         public string Name { get; set; } = string.Empty;
+
         public List<Guid> Permissions { get; set; }
     }
 }

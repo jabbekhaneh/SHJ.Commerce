@@ -7,6 +7,7 @@ using SHJ.BaseFramework.Repository;
 using SHJ.BaseFramework.Shared;
 using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 using SHJ.Commerce.Domain.Aggregates.Identity;
+using SHJ.ExceptionHandler;
 using System.Security.Claims;
 
 namespace SHJ.Commerce.Application.Services.Identity.v1;
@@ -36,6 +37,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
         var addRoleResult = await _roleManager.CreateAsync(newRole);
 
         addRoleResult.CheckErrors();
+        
 
         await AddClaims(input, newRole);
 
@@ -85,7 +87,6 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
         {
             if (!getClaimes.Any(_ => _.Value == permission.ToString()))
                 await _roleManager.AddClaimAsync(role, new Claim("Permission", permission.ToString()));            
-
         }
         return await ReturnResultAsync(result);
     }

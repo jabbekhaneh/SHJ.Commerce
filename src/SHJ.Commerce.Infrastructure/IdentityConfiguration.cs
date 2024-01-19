@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
 using SHJ.Commerce.Domain.Aggregates.Identity;
 using SHJ.Commerce.Infrastructure.EntityFrameworkCore;
-using SHJ.BaseFramework.Shared;
 
 namespace SHJ.Commerce.Infrastructure;
 
@@ -18,6 +17,7 @@ internal static class IdentityConfiguration
         services.AddIdentity<User, Role>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
+            
 
 
         services.Configure<IdentityOptions>(options =>

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SHJ.BaseFramework.EntityFrameworkCore;
 using SHJ.BaseFramework.Repository;
@@ -15,12 +14,9 @@ public static class InfrastructureDependencies
     public static IServiceCollection BuildInfrastructure(this IServiceCollection services)
     {
         services.RegisterPages();
-        
-
-        services.RegisterEntityframework();
 
         services.RegisterIdentity();
-        
+
         return services;
     }
 
@@ -37,20 +33,21 @@ public static class InfrastructureDependencies
         return serviceProvider;
     }
 
-
-    //--------------------------------------------------
-
-    private static IServiceCollection RegisterEntityframework(this IServiceCollection services)
+    public static IServiceCollection RegisterEntityframework(this IServiceCollection services, Action<DbContextOptionsBuilder> options)
     {
-        services.AddDbContext<ApplicationDbContext>();
+
+        
+        services.AddDbContext<ApplicationDbContext>(options);
         services.AddTransient<IBaseCommandUnitOfWork, BaseEFUnitOfWork<ApplicationDbContext>>();
-        services.AddScoped<ISeadData, SeadData>();
+        services.AddTransient<ISeadData, SeadData>();
+        
         return services;
     }
 
     private static IServiceCollection RegisterPages(this IServiceCollection services)
     {
-        
+
         return services;
     }
+
 }

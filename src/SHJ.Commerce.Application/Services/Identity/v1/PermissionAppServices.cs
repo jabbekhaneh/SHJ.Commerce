@@ -4,6 +4,7 @@ using SHJ.BaseFramework.AspNet.Services;
 using SHJ.BaseFramework.Shared;
 using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 using SHJ.Commerce.Domain.Aggregates.Identity;
+using SHJ.Commerce.Shared.Common;
 
 namespace SHJ.Commerce.Application.Services.Identity.v1;
 
@@ -11,10 +12,12 @@ namespace SHJ.Commerce.Application.Services.Identity.v1;
 public class PermissionAppServices : BaseAppService, IPermissionAppServices
 {
     private readonly PermissionManager _permissionManager;
-
-    public PermissionAppServices(PermissionManager permissionManager)
+    private readonly ISeadData _seadData;
+    public PermissionAppServices(PermissionManager permissionManager, ISeadData seadData)
     {
         _permissionManager = permissionManager;
+        this._seadData = seadData;
+        _seadData.Initialize();
     }
 
     [HttpGet]

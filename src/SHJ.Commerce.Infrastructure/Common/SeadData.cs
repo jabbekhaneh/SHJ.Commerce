@@ -15,32 +15,33 @@ public class SeadData : ISeadData
     {
         _scopeFactory = scopeFactory;
     }
-    public async Task Initialize()
+
+    public void Initialize()
     {
         using (var serviceScope = _scopeFactory.CreateScope())
         {
             using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
             {
-                await context.Database.MigrateAsync();
+                context.Database.Migrate();
             }
         }
     }
 
-    public async Task SeedData()
+    public void SeedData()
     {
         using (var serviceScope = _scopeFactory.CreateScope())
         {
             using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
             {
-                await InitializePermissionsAsync(context);
+                InitializePermissions(context);
                 //await InitializeUserAdmin(context);
 
-                await context.SaveChangesAsync();
+                context.SaveChanges();
             }
         }
     }
 
-    private static async Task InitializePermissionsAsync(ApplicationDbContext? context)
+    private static void InitializePermissions(ApplicationDbContext? context)
     {
         var permissions = new List<Permission>();
         if (!context.Permissions.Any())
@@ -48,7 +49,7 @@ public class SeadData : ISeadData
             permissions.Add(new Permission("Manager", "manager"));
             permissions.Add(new Permission("Client", "client"));
         }
-        await context.Permissions.AddRangeAsync(permissions);
+        context.Permissions.AddRange(permissions);
 
     }
 

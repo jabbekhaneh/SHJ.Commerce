@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 using SHJ.BaseFramework.AspNet;
@@ -9,6 +11,8 @@ using SHJ.BaseFramework.Shared;
 using SHJ.BaseSwagger;
 using SHJ.Commerce.Application;
 using SHJ.Commerce.Infrastructure;
+using SHJ.Commerce.Infrastructure.EntityFrameworkCore;
+using SHJ.ExceptionHandler;
 
 namespace SHJ.Commerce.Web.API;
 
@@ -17,27 +21,28 @@ public static class HostExtentions
     //##################  Application Services  ####################
     public static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder builder)
     {
-        builder.Services.BuildApplication(builder.Configuration);
+
+        builder.Services.BuildApplication();
+
+        if (builder.Environment.IsProduction())
+        {
+            builder.Services.RegisterEntityframework(options =>
+            {
+                options.UseSqlServer(InternalExtentions.ProductionConnectionString);
+            });
+        }
+
+
+        builder.Services.RegisterBaseMvcApplication();
+
+        builder.Services.RegisterBaseCorsConfig();
+
         builder.Services.RegisterSwagger(options =>
         {
             options.ProjectName = "*** SHJ Commerce API ***";
         });
+
         var sqlOption = builder.Configuration.GetValueBaseSqlOptions();
-
-
-        builder.Services.AddSHJBaseFrameworkAspNet(option =>
-        {
-            option.DatabaseType = DatabaseType.MsSql;
-            option.Environment = ASPNET_EnvironmentType.Development;
-            option.SqlOptions = new BaseSqlServerOptions
-            {
-                ConnectToServer = DatabaseConnectType.SqlServerAuthentication,
-                DatabaseName = sqlOption.DatabaseName,
-                DataSource = sqlOption.DataSource,
-                UserID = sqlOption.UserID,
-                Password = sqlOption.Password,
-            };
-        });
 
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
                    .ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutofacModule()));
@@ -47,17 +52,32 @@ public static class HostExtentions
     //##################  Application Builder  ####################
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
-        app.Services.InitializeDatabase();
-
         app.UseApplication();
+
+        app.UseHttpsRedirection();
+        //app.UseBaseCorsConfig();
+        app.UseSHJExceptionHandler();
+
 
         if (app.Environment.IsDevelopment())
         {
+            app.Services.InitializeDatabase();
+            app.RegisterUseSwaggerAndUI();
+        }
+
+        if (app.Environment.IsProduction())
+        {
+            app.Services.InitializeDatabase();
             app.RegisterUseSwaggerAndUI();
         }
 
 
         app.MapControllers();
+
+        //app.UseRouting();
+
+        //app.MapControllerRoute(name: "default",
+        //                       pattern: "{controller=Home}/{action=Index}/{id?}");
         return app;
     }
 

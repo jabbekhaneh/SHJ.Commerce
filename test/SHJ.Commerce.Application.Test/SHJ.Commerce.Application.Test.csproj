@@ -32,6 +32,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\SHJ.Commerce.Web.API\SHJ.Commerce.Web.API.csproj" />
+		<ProjectReference Include="..\SHJ.Commerce.Domain.Test\SHJ.Commerce.Domain.Test.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

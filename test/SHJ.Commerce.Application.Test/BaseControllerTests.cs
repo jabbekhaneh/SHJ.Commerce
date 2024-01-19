@@ -14,7 +14,7 @@ public class BaseControllerTests : IClassFixture<IntegrationContainersAppFactory
     {
         _factory = factory;
         RequestHttp = _factory.CreateClient();
-        Connection = new SqlConnection(_factory.SqlContainerFixture.GetConnectionString());
+        Connection = new SqlConnection(_factory.SqlContainerFixture.GetConnectionString);
     }
 
 }

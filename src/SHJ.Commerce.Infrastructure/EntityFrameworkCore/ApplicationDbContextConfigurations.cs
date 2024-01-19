@@ -22,6 +22,7 @@ internal static class ApplicationDbContextConfigurations
 
     public static void QueryFiltersConfiguration(this ModelBuilder modelBuilder)
     {
+        
         //modelBuilder.Entity<Page>().HasQueryFilter(it => !it.IsDeleted);
     }
 
@@ -36,6 +37,7 @@ internal static class ApplicationDbContextConfigurations
     public static void ConfigurationOptionsBuilder(this DbContextOptionsBuilder optionsBuilder,
                                                    IOptions<BaseOptions> Options)
     {
+        
         if (Options.Value.DatabaseType == DatabaseType.InMemory)
         {
             optionsBuilder.UseInMemoryDatabase("App.Db");
