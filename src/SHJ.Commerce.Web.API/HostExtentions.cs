@@ -2,16 +2,12 @@
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
-using SHJ.BaseFramework.AspNet;
 using SHJ.BaseFramework.DependencyInjection.Modules;
-using SHJ.BaseFramework.Shared;
 using SHJ.BaseSwagger;
 using SHJ.Commerce.Application;
 using SHJ.Commerce.Infrastructure;
-using SHJ.Commerce.Infrastructure.EntityFrameworkCore;
 using SHJ.ExceptionHandler;
 
 namespace SHJ.Commerce.Web.API;

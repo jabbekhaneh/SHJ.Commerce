@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ServiceStack;
 using SHJ.BaseFramework.AspNet.Services;
 using SHJ.BaseFramework.Repository;
 using SHJ.BaseFramework.Shared;
 using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 using SHJ.Commerce.Domain.Aggregates.Identity;
-using SHJ.ExceptionHandler;
 using System.Security.Claims;
 
 namespace SHJ.Commerce.Application.Services.Identity.v1;
@@ -70,9 +68,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
 
         role.Name = input.Name;
 
-        var result = await _roleManager.UpdateAsync(role);
-
-        result.CheckErrors();
+        
 
         var getClaimes = await _roleManager.GetClaimsAsync(role);
 
@@ -88,6 +84,10 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
             if (!getClaimes.Any(_ => _.Value == permission.ToString()))
                 await _roleManager.AddClaimAsync(role, new Claim("Permission", permission.ToString()));            
         }
+        var result = await _roleManager.UpdateAsync(role);
+
+        result.CheckErrors();
+
         return await ReturnResultAsync(result);
     }
 
@@ -101,8 +101,9 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
         return await ResultAsync(role);
     }
 
+
     [HttpGet]
-    public async Task<BaseResult> Get(BaseFilterDto input)
+    public async Task<BaseResult> Get([FromRoute]BaseFilterDto input)
     {
         var result = new RolesDto();
         var query = _roleManager.Roles;

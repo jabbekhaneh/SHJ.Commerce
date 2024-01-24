@@ -4,9 +4,9 @@ using System.Net;
 
 namespace SHJ.Commerce.Application.Test.Services.Identity.Factories;
 
-public class PermissionFactory
+public static class PermissionExtentions
 {
-    public static async Task<List<PermissionDto>> GetPermissionsAsync(HttpClient client)
+    public static async Task<List<Guid>> GetPermissionsAsync(this HttpClient client)
     {
         var permissions = await client.GetAsync(ApiConstUrls.PermissionAppServices);
 
@@ -16,6 +16,6 @@ public class PermissionFactory
         var response = await permissions
             .DeserializeResponseAsync<BaseHttpResponseTestViewModel<List<PermissionDto>>>();
         
-        return response.Result;
+        return response.Result.Select(_=>_.Id).ToList();
     }
 }
