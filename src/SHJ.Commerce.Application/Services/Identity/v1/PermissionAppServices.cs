@@ -11,11 +11,11 @@ namespace SHJ.Commerce.Application.Services.Identity.v1;
 [BaseControllerName("Permission")]
 public class PermissionAppServices : BaseAppService, IPermissionAppServices
 {
-    private readonly PermissionManager _permissionManager;
+    private readonly PermissionManager _Manager;
     private readonly ISeadData _seadData;
     public PermissionAppServices(PermissionManager permissionManager, ISeadData seadData)
     {
-        _permissionManager = permissionManager;
+        _Manager = permissionManager;
         this._seadData = seadData;
         _seadData.Initialize();
     }
@@ -23,7 +23,7 @@ public class PermissionAppServices : BaseAppService, IPermissionAppServices
     [HttpGet]
     public async Task<BaseResult> Get()
     {
-        var permissions = await _permissionManager.Permissions()
+        var permissions = await _Manager.Permissions()
             .Select(_ => new PermissionDto
             {
                 Id = _.Id,

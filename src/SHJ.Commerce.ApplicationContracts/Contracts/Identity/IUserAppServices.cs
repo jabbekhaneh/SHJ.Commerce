@@ -4,7 +4,7 @@ namespace SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 
 public interface IUserAppServices
 {
-    Task<BaseResult> Create();
+    Task<BaseResult> Create(CreateUserDto input);
     Task<BaseResult<UsersDto>> Get(BaseFilterDto input);
     Task<BaseResult<UserDto>> Get(Guid id);
     Task<BaseResult<UserDto>> Edit(Guid id, EditUserDto input);

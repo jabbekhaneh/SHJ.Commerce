@@ -1,10 +1,10 @@
 ﻿using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 
-namespace SHJ.Commerce.Application.Test.Services.Identity.Factories;
+namespace SHJ.Commerce.Application.Test.Services.Identity;
 
-internal static class RoleFactory
+internal static class RoleExtentions
 {
-    public static async Task<Guid> CreateRoleAsync(this HttpClient client,string roleName,List<Guid> permissionIds)
+    public static async Task<Guid> CreateRoleAsync(this HttpClient client, string roleName, List<Guid> permissionIds)
     {
         var input = Builder<CreateRoleDto>.CreateNew()
                                           .With(_ => _.Name, roleName)
@@ -27,5 +27,5 @@ internal static class RoleFactory
         return executed.Result.Roles;
     }
 
-    
+
 }

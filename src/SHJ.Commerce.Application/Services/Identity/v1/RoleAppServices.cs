@@ -13,11 +13,11 @@ namespace SHJ.Commerce.Application.Services.Identity.v1;
 [BaseControllerName("Role")]
 public class RoleAppServices : BaseAppService, IRoleAppServices
 {
-    private readonly RoleManager<Role> _roleManager;
+    private readonly RoleManager<Role> _Manager;
 
     public RoleAppServices(RoleManager<Role> roleManager)
     {
-        _roleManager = roleManager;
+        _Manager = roleManager;
     }
 
     [HttpPost]
@@ -32,7 +32,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
             Name = input.Name,
         };
 
-        var addRoleResult = await _roleManager.CreateAsync(newRole);
+        var addRoleResult = await _Manager.CreateAsync(newRole);
 
         addRoleResult.CheckErrors();
         
@@ -45,11 +45,11 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
     [HttpDelete("{id}")]
     public async Task<BaseResult> Delete(Guid id)
     {
-        var role = await _roleManager.FindByIdAsync(id.ToString());
+        var role = await _Manager.FindByIdAsync(id.ToString());
 
         if (role == null) return await FailRequestAsync(BaseStatusCodes.NotFound);
 
-        var result = await _roleManager.DeleteAsync(role);
+        var result = await _Manager.DeleteAsync(role);
 
         result.CheckErrors();
 
@@ -62,7 +62,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
         if (!ModelState.IsValid)
             return await FailRequestAsync(ModelState);
 
-        var role = await _roleManager.FindByIdAsync(id.ToString());
+        var role = await _Manager.FindByIdAsync(id.ToString());
 
         if (role == null) return await FailRequestAsync(BaseStatusCodes.NotFound);
 
@@ -70,21 +70,20 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
 
         
 
-        var getClaimes = await _roleManager.GetClaimsAsync(role);
+        var getClaimes = await _Manager.GetClaimsAsync(role);
 
         var removePermissions = getClaimes.Where(_ => input.Permissions.Any(p => p.ToString() != _.Value));
 
         foreach (var permission in removePermissions)
         {
-            await _roleManager.RemoveClaimAsync(role, new Claim("Permission", permission.ToString()));
+            await _Manager.RemoveClaimAsync(role, new Claim("Permission", permission.ToString()));
         }  
         
         foreach (var permission in input.Permissions)
         {
-            if (!getClaimes.Any(_ => _.Value == permission.ToString()))
-                await _roleManager.AddClaimAsync(role, new Claim("Permission", permission.ToString()));            
+            await _Manager.AddClaimAsync(role, new Claim("Permission", permission.ToString()));
         }
-        var result = await _roleManager.UpdateAsync(role);
+        var result = await _Manager.UpdateAsync(role);
 
         result.CheckErrors();
 
@@ -94,7 +93,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
     [HttpGet("{id}")]
     public async Task<BaseResult> Get(Guid id)
     {
-        var role = await _roleManager.FindByIdAsync(id.ToString());
+        var role = await _Manager.FindByIdAsync(id.ToString());
 
         if (role == null) return await FailRequestAsync(BaseStatusCodes.NotFound);
 
@@ -106,7 +105,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
     public async Task<BaseResult> Get([FromRoute]BaseFilterDto input)
     {
         var result = new RolesDto();
-        var query = _roleManager.Roles;
+        var query = _Manager.Roles;
         if (!string.IsNullOrEmpty(input.Search))
             query = query.Where(_ => _.Name.Contains(input.Search) ||
                                      _.NormalizedName.Contains(input.Search));
@@ -129,7 +128,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
     {
         foreach (var permission in input.Permissions)
         {
-            await _roleManager
+            await _Manager
                 .AddClaimAsync(newRole, new Claim("Permission", permission.ToString()));
         }
     }

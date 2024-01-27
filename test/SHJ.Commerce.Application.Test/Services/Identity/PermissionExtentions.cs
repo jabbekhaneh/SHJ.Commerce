@@ -2,7 +2,7 @@
 using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 using System.Net;
 
-namespace SHJ.Commerce.Application.Test.Services.Identity.Factories;
+namespace SHJ.Commerce.Application.Test.Services.Identity;
 
 public static class PermissionExtentions
 {
@@ -15,7 +15,7 @@ public static class PermissionExtentions
 
         var response = await permissions
             .DeserializeResponseAsync<BaseHttpResponseTestViewModel<List<PermissionDto>>>();
-        
-        return response.Result.Select(_=>_.Id).ToList();
+
+        return response.Result.Select(_ => _.Id).ToList();
     }
 }

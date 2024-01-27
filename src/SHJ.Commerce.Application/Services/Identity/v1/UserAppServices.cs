@@ -10,10 +10,10 @@ namespace SHJ.Commerce.Application.Services.Identity.v1;
 [BaseControllerName("User")]
 public class UserAppServices : BaseAppService, IUserAppServices
 {
-    private readonly UserManager<User> _userManager;
+    private readonly UserManager<User> _Manager;
     public UserAppServices(UserManager<User> userManager)
     {
-        _userManager = userManager;
+        _Manager = userManager;
     }
 
     [HttpPost("Roles")]
@@ -23,9 +23,26 @@ public class UserAppServices : BaseAppService, IUserAppServices
     }
 
     [HttpPost]
-    public Task<BaseResult> Create()
+    public async Task<BaseResult> Create(CreateUserDto input)
     {
-        throw new NotImplementedException();
+        if (!ModelState.IsValid)
+            return await FailRequestAsync(ModelState);
+
+        var newUser = new User
+        {
+            Email = input.Email,
+            FirstName = input.FirstName,
+            LastName = input.LastName,
+            UserName = input.Email,
+            MobileNumberConfirmed = false,
+        };
+
+        var createUser = await _Manager.CreateAsync(newUser, input.Password);
+        createUser.CheckErrors();
+        var addRolesToUser = await _Manager.AddToRolesAsync(newUser, input.RoleIds);
+        addRolesToUser.CheckErrors();
+
+        return await ResultAsync(newUser.Id);
     }
 
     [HttpDelete("{id}")]
@@ -55,7 +72,7 @@ public class UserAppServices : BaseAppService, IUserAppServices
     [HttpGet("{id}")]
     public Task<BaseResult<UserDto>> Get(Guid id)
     {
-        var query = _userManager.Users;
+        var query = _Manager.Users;
         throw new NotImplementedException();
     }
 }

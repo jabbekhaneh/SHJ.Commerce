@@ -25,7 +25,7 @@ public class User : IdentityUser<Guid>
     public virtual string? Mobile { get; set; } = string.Empty;
     public virtual bool? MobileNumberConfirmed { get; set; }
 
-    public virtual decimal? Wallet { get; set; }
+    public virtual decimal? Wallet { get; set; } = 0;
 
     public virtual DateTime? DateOfBirth { get; set; }
 
