@@ -11,6 +11,7 @@ namespace SHJ.Commerce.Application.Services.Identity.v1;
 public class UserAppServices : BaseAppService, IUserAppServices
 {
     private readonly UserManager<User> _Manager;
+
     public UserAppServices(UserManager<User> userManager)
     {
         _Manager = userManager;
@@ -39,16 +40,20 @@ public class UserAppServices : BaseAppService, IUserAppServices
 
         var createUser = await _Manager.CreateAsync(newUser, input.Password);
         createUser.CheckErrors();
-        var addRolesToUser = await _Manager.AddToRolesAsync(newUser, input.RoleIds);
+
+        var addRolesToUser = await _Manager.AddToRolesAsync(newUser, input.RoleNames);
         addRolesToUser.CheckErrors();
 
         return await ResultAsync(newUser.Id);
     }
 
     [HttpDelete("{id}")]
-    public Task<BaseResult> Delete(Guid id)
+    public async Task<BaseResult> Delete(Guid id)
     {
-        throw new NotImplementedException();
+        var user = await _Manager.FindByIdAsync(id.ToString());
+        var result = await _Manager.DeleteAsync(user);
+        result.CheckErrors();
+        return await OkAsync();
     }
 
     [HttpDelete("{id}/Roles")]

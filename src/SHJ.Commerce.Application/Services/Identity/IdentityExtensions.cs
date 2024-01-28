@@ -25,7 +25,7 @@ public static class IdentityExtensions
     }
 
 
-    public static void CheckSignInResult(this SignInResult signInResult)
+    public static void CheckSignInResultErrors(this SignInResult signInResult)
     {
         if (signInResult.Succeeded)
             return;

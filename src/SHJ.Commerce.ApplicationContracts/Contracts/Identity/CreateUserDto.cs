@@ -7,7 +7,7 @@ public class CreateUserDto : BaseDto
 {
     public CreateUserDto()
     {
-        RoleIds = new();
+        RoleNames = new();
     }
 
     [Required]
@@ -16,5 +16,5 @@ public class CreateUserDto : BaseDto
     public string? LastName { get; set; }
     [Required,MinLength(8)]
     public string Password { get; set; } = string.Empty;
-    public List<string> RoleIds { get; set; }
+    public List<string> RoleNames { get; set; }
 }

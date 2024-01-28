@@ -32,7 +32,7 @@ public class AccountAppServices : BaseAppService, IAccountAppServices
         var result = await _signInManager
             .PasswordSignInAsync(input.UserName, input.Password, input.IsPersistent, true);
         
-        result.CheckSignInResult();
+        result.CheckSignInResultErrors();
 
         return await OkAsync();
     }

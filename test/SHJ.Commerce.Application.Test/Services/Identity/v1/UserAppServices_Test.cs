@@ -16,11 +16,18 @@ public class UserAppServices_Test : BaseControllerTests
     public async Task OnCreateUser_WhenExecuteController_ShouldReturnOK()
     {
         //arrange
-        string email = "dummy-email@mail.com";
+        string email = "dummy-email@mail.com".ToLower();
+        string roleName = "RoleForCreateUser".ToLower();
+        var permissionIds = await RequestHttp.GetPermissionsAsync();
+        await RequestHttp.CreateRoleAsync(roleName, permissionIds);
+        var roles = new List<string>();
+        roles.Add(roleName);
         var createUserDto = Builder<CreateUserDto>.CreateNew()
                                                   .With(_ => _.Email, email)
                                                   .With(_ => _.Password, "Aa@123456")
+                                                  .With(_ => _.RoleNames, roles)
                                                   .Build();
+
 
         //act 
         var actual = await RequestHttp.PostAsync(_Sut, HttpHelper.GetJsonHttpContent(createUserDto));
@@ -46,5 +53,19 @@ public class UserAppServices_Test : BaseControllerTests
 
         //assert
         actual.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
+    }
+
+    [Fact]
+    public async Task OnDeleteUser_WhenExecuteController_ShouldReturnOK()
+    {
+        //arrange
+        string email = "dummy-DeleteUser@mail.com".ToLower();
+        Guid userId = await RequestHttp.CreateUserAsync(email);
+
+        //act 
+        var actual = await RequestHttp.DeleteAsync(_Sut + "/" + userId );
+
+        //assert
+        actual.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 }
