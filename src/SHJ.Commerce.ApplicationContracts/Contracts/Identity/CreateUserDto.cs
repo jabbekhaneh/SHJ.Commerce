@@ -10,11 +10,11 @@ public class CreateUserDto : BaseDto
         RoleNames = new();
     }
 
-    [Required]
+    [Required, EmailAddress]
     public string Email { get; set; } = string.Empty;
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
-    [Required,MinLength(8)]
+    [Required, MinLength(8)]
     public string Password { get; set; } = string.Empty;
     public List<string> RoleNames { get; set; }
 }

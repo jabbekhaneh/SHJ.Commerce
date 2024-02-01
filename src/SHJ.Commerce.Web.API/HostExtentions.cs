@@ -9,7 +9,6 @@ using SHJ.BaseSwagger;
 using SHJ.Commerce.Application;
 using SHJ.Commerce.Infrastructure;
 using SHJ.ExceptionHandler;
-
 namespace SHJ.Commerce.Web.API;
 
 public static class HostExtentions
@@ -17,7 +16,8 @@ public static class HostExtentions
     //##################  Application Services  ####################
     public static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder builder)
     {
-
+        
+        
         builder.Services.BuildApplication();
 
         if (builder.Environment.IsProduction())
@@ -48,11 +48,12 @@ public static class HostExtentions
     //##################  Application Builder  ####################
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
+        
         app.UseApplication();
-
+        
         app.UseHttpsRedirection();
         //app.UseBaseCorsConfig();
-        app.UseSHJExceptionHandler();
+        //app.UseSHJExceptionHandler();
 
 
         if (app.Environment.IsDevelopment())

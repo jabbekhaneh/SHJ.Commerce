@@ -38,7 +38,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
 
         await AddClaims(input, newRole);
 
-        return await ResultAsync(newRole.Id);
+        return await ReturnResultAsync(newRole.Id);
     }
 
     [HttpDelete("{id}")]
@@ -96,7 +96,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
 
         if (role == null) return await FailRequestAsync(BaseStatusCodes.NotFound);
 
-        return await ResultAsync(role);
+        return await ReturnResultAsync(role);
     }
 
 
@@ -109,7 +109,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
             query = query.Where(_ => _.Name.Contains(input.Search) ||
                                      _.NormalizedName.Contains(input.Search));
 
-        var paging = query.Pagination<Role>(input.Take, input.PageId);
+        var paging = query.Pagination<Role>(input.Take ?? 40, input.PageId ?? 1);
         result.PageSize = paging.PageSize;
         result.Roles = await paging.Query.Select(_ => new RoleDto
         {

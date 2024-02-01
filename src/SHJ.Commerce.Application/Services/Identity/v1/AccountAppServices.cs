@@ -13,15 +13,15 @@ namespace SHJ.Commerce.Application.Services.Identity.v1;
 public class AccountAppServices : BaseAppService, IAccountAppServices
 {
     private readonly SignInManager<User> _signInManager;
-    protected readonly UserManager<User> _userManager;
-    public AccountAppServices(SignInManager<User> signInManager, UserManager<User> userManager)
+    
+    public AccountAppServices(SignInManager<User> signInManager)
     {
         _signInManager = signInManager;
-        _userManager = userManager;
+        
     }
 
-    [HttpPost, ActionName("SignIn")]
-    public async Task<BaseResult> SignIn(SignIn input)
+    [HttpPost]
+    public async Task<BaseResult> SignIn([FromBody]SignIn input)
     {
         if (_signInManager.IsSignedIn(User))
             throw new BaseBusinessException(GlobalIdentityErrors.AccessDenied, "AccessDenied");
@@ -37,31 +37,12 @@ public class AccountAppServices : BaseAppService, IAccountAppServices
         return await OkAsync();
     }
 
-    [HttpPost("Signout")]
+    [HttpPatch]
     public async Task Signout()
     {
         await _signInManager.SignOutAsync();
     }
 
-    [HttpPost("SignUp")]
-    public async Task<BaseResult> SignUp(SignUp input)
-    {
-
-        if (!ModelState.IsValid)
-            return await FailRequestAsync(ModelState);
-
-        var newUser = new User()
-        {
-            Email = input.Email,
-            EmailConfirmed = false,
-            FirstName = input.FirstName,
-            LastName = input.LastName,
-            UserName = input.Email,
-        };
-
-        var result = await _userManager.CreateAsync(newUser);
-        result.CheckErrors();
-        return await ReturnResultAsync(newUser);
-    }
+   
 
 }

@@ -11,7 +11,7 @@ public static class PermissionExtentions
         var permissions = await client.GetAsync(ApiConstUrls.PermissionAppServices);
 
         if (permissions.StatusCode != HttpStatusCode.OK)
-        { throw new Exception("PermissionFactory.GeneratePermissions"); }
+            throw new Exception("get permission error");
 
         var response = await permissions
             .DeserializeResponseAsync<BaseHttpResponseTestViewModel<List<PermissionDto>>>();

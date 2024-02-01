@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SHJ.BaseFramework.AspNet" Version="1.5.2" />
+    <PackageReference Include="SHJ.BaseFramework.AspNet" Version="1.5.4" />
     <PackageReference Include="SHJ.BaseSwagger" Version="1.0.1" />
   </ItemGroup>
 

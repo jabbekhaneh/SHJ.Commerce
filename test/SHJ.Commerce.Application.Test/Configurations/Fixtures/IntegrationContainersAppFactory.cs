@@ -3,9 +3,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using SHJ.Commerce.Application.Test.Configurations.Fakes;
-using SHJ.BaseFramework.AspNet;
 using SHJ.BaseFramework.Shared;
-using SHJ.Commerce.Domain.Aggregates.Identity;
 using SHJ.Commerce.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 

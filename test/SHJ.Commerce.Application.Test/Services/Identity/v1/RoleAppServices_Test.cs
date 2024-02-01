@@ -1,6 +1,4 @@
-﻿using Bogus.Bson;
-using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
-using System.Text;
+﻿using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 
 
 namespace SHJ.Commerce.Application.Test.Services.Identity.v1;
@@ -8,7 +6,7 @@ namespace SHJ.Commerce.Application.Test.Services.Identity.v1;
 public class RoleAppServices_Test : BaseControllerTests
 {
 
-    private readonly static string _Sut = ApiConstUrls.RoleAppServices;
+    private static string _Sut = ApiConstUrls.RoleAppServices;
     public RoleAppServices_Test(IntegrationContainersAppFactory factory) : base(factory)
     {
 
@@ -19,14 +17,14 @@ public class RoleAppServices_Test : BaseControllerTests
     {
         //arrange
 
-        var permissionIds = await PermissionExtentions.GetPermissionsAsync(RequestHttp);
+        var permissionIds = await RequestClient.GetPermissionsAsync();
         string roleName = "Dummy-Create-Role-Name";
         var input = Builder<CreateRoleDto>.CreateNew()
                                           .With(_ => _.Name, roleName)
                                           .With(_ => _.Permissions, permissionIds)
                                           .Build();
         //act
-        var actual = await RequestHttp.PostAsync(_Sut, HttpHelper.GetJsonHttpContent(input));
+        var actual = await RequestClient.PostAsync(_Sut, HttpHelper.GetJsonHttpContent(input));
 
         //assert
         actual.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -37,16 +35,16 @@ public class RoleAppServices_Test : BaseControllerTests
     public async Task OnCreateRole_WhenExecuteController_ShouldExceptionDublicateTitle()
     {
         //arrange
-        var permissionIds = await PermissionExtentions.GetPermissionsAsync(RequestHttp);
+        var permissionIds = await RequestClient.GetPermissionsAsync();
         string roleName = "Dummy-DublicateTitle";
-        await RequestHttp.CreateRoleAsync(roleName, permissionIds);
+        await RequestClient.CreateRoleAsync(roleName, permissionIds);
         var input = Builder<CreateRoleDto>.CreateNew()
                                          .With(_ => _.Name, roleName)
                                          .With(_ => _.Permissions, permissionIds)
                                          .Build();
 
         //act
-        var actual = await RequestHttp.PostAsync(_Sut, HttpHelper.GetJsonHttpContent(input));
+        var actual = await RequestClient.PostAsync(_Sut, HttpHelper.GetJsonHttpContent(input));
 
         //assert
         actual.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
@@ -57,13 +55,13 @@ public class RoleAppServices_Test : BaseControllerTests
     {
 
         //arrange
-        var permissionIds = await RequestHttp.GetPermissionsAsync();
+        var permissionIds = await RequestClient.GetPermissionsAsync();
         string roleName = "Dummy-Delete-Role-Name".ToLower();
 
-        var roleId = await RequestHttp.CreateRoleAsync(roleName, permissionIds);
+        var roleId = await RequestClient.CreateRoleAsync(roleName, permissionIds);
 
         //act
-        var actual = await RequestHttp.DeleteAsync(_Sut + "/" + roleId);
+        var actual = await RequestClient.DeleteAsync(_Sut + "/" + roleId);
 
         //assert
         actual.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -76,7 +74,7 @@ public class RoleAppServices_Test : BaseControllerTests
         Guid fakeId = Guid.NewGuid();
 
         //act
-        var actual = await RequestHttp.DeleteAsync(_Sut + "/" + fakeId);
+        var actual = await RequestClient.DeleteAsync(_Sut + "/" + fakeId);
 
         //assert
         actual.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -89,20 +87,20 @@ public class RoleAppServices_Test : BaseControllerTests
     public async Task OnEditRole_WhenExecutedController_ShouldReturnRoleOK()
     {
         //arrange
-        var permissionIds = await RequestHttp.GetPermissionsAsync();
+        var permissionIds = await RequestClient.GetPermissionsAsync();
         string roleName = "Dummy-Admin";
-        var roleId = await RequestHttp.CreateRoleAsync(roleName, permissionIds);
+        var roleId = await RequestClient.CreateRoleAsync(roleName, permissionIds);
         var editInput = Builder<EditRoleDto>.CreateNew()
                                             .With(_ => _.Name, "Admin-edit")
                                             .With(_ => _.Permissions, permissionIds)
                                             .Build();
 
         //act
-        var actual = await RequestHttp.PutAsync(_Sut + "/" + roleId, HttpHelper.GetJsonHttpContent(editInput));
+        var actual = await RequestClient.PutAsync(_Sut + "/" + roleId, HttpHelper.GetJsonHttpContent(editInput));
 
         //assert
         actual.StatusCode.Should().Be(HttpStatusCode.OK);
-        var roles = await RequestHttp.GetRoles();
+        var roles = await RequestClient.GetRoles();
         roles.First(_ => _.Id == roleId).Name.Should().Be(editInput.Name);
     }
 
@@ -110,12 +108,12 @@ public class RoleAppServices_Test : BaseControllerTests
     public async Task OnGetRoles_WhenExecutedController_ShouldReturnRolesOK()
     {
         //arrage
-        var permissionIds = await PermissionExtentions.GetPermissionsAsync(RequestHttp);
+        var permissionIds = await PermissionExtentions.GetPermissionsAsync(RequestClient);
         string roleName = "Dummy-GetRole";
-        await RequestHttp.CreateRoleAsync(roleName, permissionIds);
+        await RequestClient.CreateRoleAsync(roleName, permissionIds);
 
         //act
-        var actual = await RequestHttp.GetAsync(_Sut);
+        var actual = await RequestClient.GetAsync(_Sut);
 
         //assert
         actual.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -127,16 +125,18 @@ public class RoleAppServices_Test : BaseControllerTests
     public async Task OnGetRoleById_WhenExecutedController_ShouldReturnRoleOK()
     {
         //arrage
-        var permissionIds = await PermissionExtentions.GetPermissionsAsync(RequestHttp);
+        var permissionIds = await PermissionExtentions.GetPermissionsAsync(RequestClient);
         string roleName = "Dummy-DeleteRole".ToLower();
-        var roleId = await RequestHttp.CreateRoleAsync(roleName, permissionIds);
+        var roleId = await RequestClient.CreateRoleAsync(roleName, permissionIds);
 
         //act
-        var actual = await RequestHttp.GetAsync(_Sut + "/" + roleId);
+        var actual = await RequestClient.GetAsync(_Sut + "/" + roleId);
 
         //assert
         actual.StatusCode.Should().Be(HttpStatusCode.OK);
         var executed = await actual.DeserializeResponseAsync<BaseHttpResponseTestViewModel<RoleDto>>();
         executed.Result.Name.Should().Be(roleName);
     }
+
+
 }

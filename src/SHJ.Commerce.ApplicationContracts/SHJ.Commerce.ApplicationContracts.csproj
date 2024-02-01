@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SHJ.BaseFramework.Shared" Version="1.5.2" />
+    <PackageReference Include="SHJ.BaseFramework.Shared" Version="1.5.4" />
   </ItemGroup>
 
 </Project>

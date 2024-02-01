@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿global using Mapster;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using SHJ.BaseFramework.AspNet;
 using SHJ.Commerce.Infrastructure;
@@ -12,7 +13,7 @@ public static class ApplicationDependencies
     {
         services.BuildInfrastructure();
         services.AddSHJBaseFrameworkAspNet(option => { });
-
+        
         return services;
     }
 

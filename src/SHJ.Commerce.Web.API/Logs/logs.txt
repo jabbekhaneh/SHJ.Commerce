@@ -1,0 +1,7 @@
+2024-01-28 01:08:57.096 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-01-28 01:09:03.265 -08:00 [FTL] Host terminated unexpectedly!
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at SHJ.Commerce.Infrastructure.InfrastructureDependencies.InitializeDatabase(IServiceProvider serviceProvider) in E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Infrastructure\InfrastructureDependencies.cs:line 30
+   at SHJ.Commerce.Web.API.HostExtentions.ConfigurePipeline(WebApplication app) in E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API\HostExtentions.cs:line 60
+   at Program.<Main>$(String[] args) in E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API\Program.cs:line 8
+2024-01-29 01:02:44.759 -08:00 [INF] Starting SHJ.Commerce.Web.API
