@@ -108,7 +108,7 @@ public class RoleAppServices_Test : BaseControllerTests
     public async Task OnGetRoles_WhenExecutedController_ShouldReturnRolesOK()
     {
         //arrage
-        var permissionIds = await PermissionExtentions.GetPermissionsAsync(RequestClient);
+        var permissionIds = await RequestClient.GetPermissionsAsync();
         string roleName = "Dummy-GetRole";
         await RequestClient.CreateRoleAsync(roleName, permissionIds);
 
@@ -125,7 +125,7 @@ public class RoleAppServices_Test : BaseControllerTests
     public async Task OnGetRoleById_WhenExecutedController_ShouldReturnRoleOK()
     {
         //arrage
-        var permissionIds = await PermissionExtentions.GetPermissionsAsync(RequestClient);
+        var permissionIds = await RequestClient.GetPermissionsAsync();
         string roleName = "Dummy-DeleteRole".ToLower();
         var roleId = await RequestClient.CreateRoleAsync(roleName, permissionIds);
 

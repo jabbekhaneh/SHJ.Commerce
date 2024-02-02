@@ -34,8 +34,7 @@ public class SeadData : ISeadData
             using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
             {
                 InitializePermissions(context);
-                //await InitializeUserAdmin(context);
-
+                //InitializeUserAdmin(context);
                 context.SaveChanges();
             }
         }
@@ -53,16 +52,19 @@ public class SeadData : ISeadData
 
     }
 
-    private static async Task InitializeUserAdminAsync(ApplicationDbContext? context)
+    private static void InitializeUserAdmin(ApplicationDbContext? context)
     {
-        if (!await context.Users.AnyAsync(_ => _.UserName == UserAdminInfo.AdminUserNameDefaultValue))
+        if (!context.Users.Any(_ => _.UserName == UserAdminInfo.AdminUserNameDefaultValue))
         {
             var userAdmin = new User
             {
                 FirstName = UserAdminInfo.AdminFirstName,
                 LastName = UserAdminInfo.AdminLastName,
-                Email = UserAdminInfo.AdminEmailDefaultValue,
-                UserName = UserAdminInfo.AdminUserNameDefaultValue,
+                Email = UserAdminInfo.AdminEmailDefaultValue.ToLower(),
+                UserName = UserAdminInfo.AdminUserNameDefaultValue.ToLower(),
+                EmailConfirmed=true,
+                MobileNumberConfirmed=true,               
+                
             };
 
             var password = new PasswordHasher<User>();

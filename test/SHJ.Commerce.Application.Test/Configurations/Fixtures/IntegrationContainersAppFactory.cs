@@ -33,7 +33,12 @@ public class IntegrationContainersAppFactory : WebApplicationFactory<Program>, I
 
             services.RegisterEntityframework(options =>
             {
-                options.UseSqlServer(SqlContainerFixture.GetConnectionString);
+                options.UseSqlServer(SqlContainerFixture.GetConnectionString, builder =>
+                {
+                    //var minutes = (int)TimeSpan.FromMinutes(3).TotalSeconds;
+                    //builder.CommandTimeout(minutes);
+                    //builder.EnableRetryOnFailure();
+                });
             });
             services.AddScoped<IBaseClaimService, FakeClaimService>();
         });

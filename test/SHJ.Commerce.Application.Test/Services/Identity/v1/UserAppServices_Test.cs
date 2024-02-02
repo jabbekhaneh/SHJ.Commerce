@@ -1,4 +1,5 @@
 ﻿using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
+using static ServiceStack.Diagnostics.Events;
 
 namespace SHJ.Commerce.Application.Test.Services.Identity.v1;
 
@@ -69,5 +70,39 @@ public class UserAppServices_Test : BaseControllerTests
 
         //assert
         actual.StatusCode.Should().Be(HttpStatusCode.OK);
+    }
+
+    [Fact]
+    public async Task OnGetUserById_WhenExecuteController_ShouldReturnOK()
+    {
+        //arrange
+        string email = "dummy-GetUserById@mail.com".ToLower();
+        var createUserDto = Builder<CreateUserDto>.CreateNew()
+                                                  .With(_ => _.Email, email)
+                                                  .With(_ => _.Password, "Aa@123456")
+                                                  .Build();
+        var res = await RequestClient.PostAsync(ApiConstUrls.UserAppServices, HttpHelper.GetJsonHttpContent(createUserDto));
+        var response = await res.DeserializeResponseAsync<BaseHttpResponseTestViewModel<Guid>>();
+
+        //act
+        var actual = await RequestClient.GetAsync(_Sut + "/" + response.Result);
+
+        //assert
+        actual.StatusCode.Should().Be(HttpStatusCode.OK);
+        var expected = await actual.DeserializeResponseAsync<BaseHttpResponseTestViewModel<UserDto>>();
+        expected.Result.Email.Should().Be(email);
+    }
+
+    [Fact]
+    public async Task OnGetUserById_WhenExecuteController_ShouldExceptionUserNotFound()
+    {
+        //arrange
+        var userId = Guid.NewGuid();
+
+        //act
+        var actual = await RequestClient.GetAsync(_Sut + "/" + userId);
+
+        //assert
+        actual.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
     }
 }

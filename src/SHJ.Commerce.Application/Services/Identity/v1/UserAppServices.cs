@@ -13,40 +13,58 @@ namespace SHJ.Commerce.Application.Services.Identity.v1;
 public class UserAppServices : BaseAppService, IUserAppServices
 {
     private readonly UserManager<User> _Manager;
-    
+
     public UserAppServices(UserManager<User> userManager)
     {
-        _Manager = userManager;   
+        _Manager = userManager;
     }
 
     [HttpPost]
-    public async Task<BaseResult> Create([FromBody]CreateUserDto input)
+    public async Task<BaseResult> Create([FromBody] CreateUserDto input)
     {
         if (!ModelState.IsValid)
             return await FailRequestAsync(ModelState);
 
         var newUser = input.Adapt<User>();
         newUser.UserName = input.Email;
-        newUser.MobileNumberConfirmed=false;
+        newUser.MobileNumberConfirmed = false;
 
-        var createUser = await _Manager.CreateAsync(newUser, input.Password);
-        createUser.CheckErrors();
+        try
+        {
+            var createUser = await _Manager.CreateAsync(newUser, input.Password);
+            createUser.CheckErrors();
+        }
+        catch (Exception ex)
+        {
 
-        var addRolesToUser = await _Manager.AddToRolesAsync(newUser, input.RoleNames);
-        addRolesToUser.CheckErrors();
+            throw;
+        }
+
+        if(input.RoleNames.Any())
+        {
+            var addRolesToUser = await _Manager.AddToRolesAsync(newUser, input.RoleNames);
+            addRolesToUser.CheckErrors();
+        }
 
         return await ReturnResultAsync(newUser.Id);
     }
 
     [HttpDelete("{id}")]
-    public async Task<BaseResult> Delete([FromRoute]Guid id)
+    public async Task<BaseResult> Delete([FromRoute] Guid id)
     {
         var user = await _Manager.FindByIdAsync(id.ToString());
-        if(user is null) throw new BaseBusinessException(GlobalIdentityErrors.UserNotFound);
+        if (user is null) throw new BaseBusinessException(GlobalIdentityErrors.UserNotFound);
         var result = await _Manager.DeleteAsync(user);
         result.CheckErrors();
         return await OkAsync();
     }
 
-   
+    [HttpGet("{id}")]
+    public async Task<BaseResult<UserDto>> GetById([FromRoute] Guid id)
+    {
+        var user = await _Manager.FindByIdAsync(id.ToString());
+        if (user is null) throw new BaseBusinessException(GlobalIdentityErrors.UserNotFound);
+        var userInfo = user.Adapt<UserDto>();
+        return await OkAsync<UserDto>(userInfo);
+    }
 }

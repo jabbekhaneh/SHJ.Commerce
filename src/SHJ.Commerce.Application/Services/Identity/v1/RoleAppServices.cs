@@ -21,7 +21,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
     }
 
     [HttpPost]
-    public async Task<BaseResult> Create(CreateRoleDto input)
+    public async Task<BaseResult> Create([FromBody]CreateRoleDto input)
     {
         if (!ModelState.IsValid)
             return await FailRequestAsync(ModelState);
@@ -42,7 +42,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
     }
 
     [HttpDelete("{id}")]
-    public async Task<BaseResult> Delete(Guid id)
+    public async Task<BaseResult> Delete([FromRoute]Guid id)
     {
         var role = await _Manager.FindByIdAsync(id.ToString());
 
@@ -56,7 +56,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
     }
 
     [HttpPut("{id}")]
-    public async Task<BaseResult> Edit(Guid id, EditRoleDto input)
+    public async Task<BaseResult> Edit([FromRoute]Guid id,[FromBody] EditRoleDto input)
     {
         if (!ModelState.IsValid)
             return await FailRequestAsync(ModelState);
@@ -90,7 +90,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
     }
 
     [HttpGet("{id}")]
-    public async Task<BaseResult> Get(Guid id)
+    public async Task<BaseResult> Get([FromRoute] Guid id)
     {
         var role = await _Manager.FindByIdAsync(id.ToString());
 
@@ -118,7 +118,6 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
         }).ToListAsync();
 
         return await ReturnResultAsync(result);
-
     }
 
 
