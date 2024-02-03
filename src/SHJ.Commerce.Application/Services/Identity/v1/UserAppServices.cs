@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Mapster;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SHJ.BaseFramework.AspNet.Services;
 using SHJ.BaseFramework.Shared;
@@ -29,18 +30,10 @@ public class UserAppServices : BaseAppService, IUserAppServices
         newUser.UserName = input.Email;
         newUser.MobileNumberConfirmed = false;
 
-        try
-        {
-            var createUser = await _Manager.CreateAsync(newUser, input.Password);
-            createUser.CheckErrors();
-        }
-        catch (Exception ex)
-        {
+        var createUser = await _Manager.CreateAsync(newUser, input.Password);
+        createUser.CheckErrors();
 
-            throw;
-        }
-
-        if(input.RoleNames.Any())
+        if (input.RoleNames.Any())
         {
             var addRolesToUser = await _Manager.AddToRolesAsync(newUser, input.RoleNames);
             addRolesToUser.CheckErrors();
@@ -56,6 +49,24 @@ public class UserAppServices : BaseAppService, IUserAppServices
         if (user is null) throw new BaseBusinessException(GlobalIdentityErrors.UserNotFound);
         var result = await _Manager.DeleteAsync(user);
         result.CheckErrors();
+        return await OkAsync();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<BaseResult> Edit([FromRoute] Guid id, [FromBody] EditUserDto input)
+    {
+        var user = await _Manager.FindByIdAsync(id.ToString());
+        if (user is null) throw new BaseBusinessException(GlobalIdentityErrors.UserNotFound);
+
+        
+        var editUser = input.Adapt<EditUserDto,User>(user);
+
+        var result = await _Manager.UpdateAsync(editUser);
+        result.CheckErrors();
+
+        var addRolesResult = await _Manager.AddToRolesAsync(user, input.RoleNames);
+        addRolesResult.CheckErrors();
+
         return await OkAsync();
     }
 

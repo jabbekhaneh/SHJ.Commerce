@@ -105,4 +105,26 @@ public class UserAppServices_Test : BaseControllerTests
         //assert
         actual.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
     }
+
+    [Fact]
+    public async Task OnEditUserById_WhenExecutedController_ShouldReturnOK()
+    {
+        //arrange
+        var createUserDto = Builder<CreateUserDto>.CreateNew()
+                                                  .With(_ => _.Email, "dummy-editUser@mail.com")
+                                                  .With(_ => _.Password, "Aa@123456")
+                                                  .Build();
+
+        var createUserResponse = await RequestClient.PostAsync(_Sut, HttpHelper.GetJsonHttpContent(createUserDto));
+        createUserResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var result = await createUserResponse.DeserializeResponseAsync<BaseHttpResponseTestViewModel<Guid>>();
+        Guid userId = result.Result;
+        var editUserDto = Builder<EditUserDto>.CreateNew().With(_=>_.Job,"Developer").Build();
+
+        //act
+        var actual = await RequestClient.PutAsync(_Sut + "/" + userId, HttpHelper.GetJsonHttpContent(editUserDto));
+
+        //assert
+        actual.StatusCode.Should().Be(HttpStatusCode.OK);
+    }
 }
