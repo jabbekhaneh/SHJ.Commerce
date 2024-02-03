@@ -7,7 +7,8 @@ public interface IUserAppServices : ITransientDependency
 {
     Task<BaseResult> Create(CreateUserDto input);
     Task<BaseResult> Edit(Guid id, EditUserDto input);
-    Task<BaseResult<UserDto>> GetById(Guid id);
+    Task<BaseResult<UsersDto>> Get(BaseFilterDto? filter);
+    Task<BaseResult<UserDto>> Get(Guid id);
     Task<BaseResult> Delete(Guid id);
     
 }

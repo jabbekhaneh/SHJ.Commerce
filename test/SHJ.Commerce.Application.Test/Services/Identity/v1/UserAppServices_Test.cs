@@ -94,6 +94,27 @@ public class UserAppServices_Test : BaseControllerTests
     }
 
     [Fact]
+    public async Task OnGeAlltUsers_WhenExecuteController_ShouldReturnOK()
+    {
+        //arrange
+        string email = "dummy-GetAllUser@mail.com".ToLower();
+        var createUserDto = Builder<CreateUserDto>.CreateNew()
+                                                  .With(_ => _.Email, email)
+                                                  .With(_ => _.Password, "Aa@123456")
+                                                  .Build();
+        await RequestClient.PostAsync(ApiConstUrls.UserAppServices, HttpHelper.GetJsonHttpContent(createUserDto));
+
+
+        //act
+        var actual = await RequestClient.GetAsync(_Sut);
+
+        //assert
+        actual.StatusCode.Should().Be(HttpStatusCode.OK);
+        var response = await actual.DeserializeResponseAsync<BaseHttpResponseTestViewModel<UsersDto>>();
+        response.Result.Users.First(_=>_.Email==email).Should().NotBeNull();
+    }
+
+    [Fact]
     public async Task OnGetUserById_WhenExecuteController_ShouldExceptionUserNotFound()
     {
         //arrange
@@ -105,6 +126,8 @@ public class UserAppServices_Test : BaseControllerTests
         //assert
         actual.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
     }
+
+
 
     [Fact]
     public async Task OnEditUserById_WhenExecutedController_ShouldReturnOK()
@@ -119,7 +142,7 @@ public class UserAppServices_Test : BaseControllerTests
         createUserResponse.StatusCode.Should().Be(HttpStatusCode.OK);
         var result = await createUserResponse.DeserializeResponseAsync<BaseHttpResponseTestViewModel<Guid>>();
         Guid userId = result.Result;
-        var editUserDto = Builder<EditUserDto>.CreateNew().With(_=>_.Job,"Developer").Build();
+        var editUserDto = Builder<EditUserDto>.CreateNew().With(_ => _.Job, "Developer").Build();
 
         //act
         var actual = await RequestClient.PutAsync(_Sut + "/" + userId, HttpHelper.GetJsonHttpContent(editUserDto));

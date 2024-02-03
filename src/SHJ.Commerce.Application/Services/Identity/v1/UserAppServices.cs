@@ -1,7 +1,10 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ServiceStack.Html;
 using SHJ.BaseFramework.AspNet.Services;
+using SHJ.BaseFramework.Repository;
 using SHJ.BaseFramework.Shared;
 using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 using SHJ.Commerce.Domain;
@@ -58,8 +61,8 @@ public class UserAppServices : BaseAppService, IUserAppServices
         var user = await _Manager.FindByIdAsync(id.ToString());
         if (user is null) throw new BaseBusinessException(GlobalIdentityErrors.UserNotFound);
 
-        
-        var editUser = input.Adapt<EditUserDto,User>(user);
+
+        var editUser = input.Adapt<EditUserDto, User>(user);
 
         var result = await _Manager.UpdateAsync(editUser);
         result.CheckErrors();
@@ -70,12 +73,31 @@ public class UserAppServices : BaseAppService, IUserAppServices
         return await OkAsync();
     }
 
+    [HttpGet]
+    public async Task<BaseResult<UsersDto>> Get([FromRoute] BaseFilterDto? filter)
+    {
+        var result = new UsersDto();
+        IQueryable<User> users = _Manager.Users;
+
+        if (filter?.Search is not null)
+        {
+            users = users.Where(_ => _.Email.Contains(filter.Search));
+        }
+        var paging = users.Pagination<User>(filter.Take ?? 40, filter.PageId ?? 1);
+
+        result.Users = await paging.Query.ProjectToType<UserDto>().ToListAsync();
+        result.PageSize = paging.PageSize;
+        return await OkAsync<UsersDto>(result);
+    }
+
     [HttpGet("{id}")]
-    public async Task<BaseResult<UserDto>> GetById([FromRoute] Guid id)
+    public async Task<BaseResult<UserDto>> Get([FromRoute] Guid id)
     {
         var user = await _Manager.FindByIdAsync(id.ToString());
         if (user is null) throw new BaseBusinessException(GlobalIdentityErrors.UserNotFound);
         var userInfo = user.Adapt<UserDto>();
         return await OkAsync<UserDto>(userInfo);
     }
+
+
 }
