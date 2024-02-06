@@ -12,12 +12,11 @@ namespace SHJ.Commerce.Application.Services.Identity.v1;
 public class PermissionAppServices : BaseAppService, IPermissionAppServices
 {
     private readonly PermissionManager _Manager;
-    private readonly ISeadData _seadData;
-    public PermissionAppServices(PermissionManager permissionManager, ISeadData seadData)
+    
+    public PermissionAppServices(PermissionManager permissionManager)
     {
         _Manager = permissionManager;
-        this._seadData = seadData;
-        _seadData.Initialize();
+        
     }
 
     [HttpGet]

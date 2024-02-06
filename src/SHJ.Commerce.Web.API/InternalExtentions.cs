@@ -1,6 +1,4 @@
-﻿using JetBrains.Annotations;
-
-namespace SHJ.Commerce.Web.API;
+﻿namespace SHJ.Commerce.Web.API;
 
 internal static class InternalExtentions
 {

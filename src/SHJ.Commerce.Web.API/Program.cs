@@ -4,20 +4,22 @@ using SHJ.Commerce.Web.API;
 try
 {
     var builder = WebApplication.CreateBuilder(args);
-
-    builder.ConfigureServices()
+    
+     builder.ConfigureServices()
            .ConfigureHostLogger().Build()
            .ConfigurePipeline().Run();
 
 }
 catch (Exception ex)
 {
+    Log.Fatal(ex, "Host terminated unexpectedly! : " + ex.Message);
     if (ex is HostAbortedException)
     {
-        throw;
+
+        throw ex ;
     }
 
-    Log.Fatal(ex, "Host terminated unexpectedly!");
+
 
 }
 

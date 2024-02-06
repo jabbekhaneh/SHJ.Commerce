@@ -11,8 +11,8 @@ public abstract class DomainTestBase : ConfigurationsServiceProvider
         using (var scope = RootServiceProvider.CreateScope())
         {
             var dbInitializer = scope.ServiceProvider.GetService<ISeadData>();
+            dbInitializer.AutomatedMigration();
             dbInitializer.Initialize();
-            dbInitializer.SeedData();
         }
     }
 

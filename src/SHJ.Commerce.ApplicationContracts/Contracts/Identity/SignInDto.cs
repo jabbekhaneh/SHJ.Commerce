@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 
-public class SignIn : BaseDto
+public class SignInDto : BaseDto
 {
-    [Required, EmailAddress]
+    [Required]
     public string UserName { get; set; } = string.Empty;
 
-    [Required, DataType(DataType.Password)]
+    [Required]
     public string Password { get; set; } = string.Empty;
 
     public bool IsPersistent { get; set; } = false;

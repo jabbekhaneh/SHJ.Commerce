@@ -10,14 +10,11 @@ internal static class IdentityConfiguration
 {
     public static IServiceCollection RegisterIdentity(this IServiceCollection services)
     {
-
-
         services.AddScoped<PermissionManager, PermissionManager>();
-
         services.AddIdentity<User, Role>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
-            
+
 
 
         services.Configure<IdentityOptions>(options =>
@@ -41,9 +38,11 @@ internal static class IdentityConfiguration
         return services;
     }
 
+   
+
     private static IServiceCollection BuildTokenBase(this IServiceCollection services)
     {
-        services.AddAuthentication();
+        services.AddAuthentication("BaseToken");
         services.AddAuthorization(options =>
         {
 
@@ -66,4 +65,6 @@ internal static class IdentityConfiguration
         });
         return services;
     }
+
+
 }

@@ -18,6 +18,14 @@ public static class InfrastructureDependencies
 
         return services;
     }
+    
+    public static IServiceCollection RegisterEntityframework(this IServiceCollection services, Action<DbContextOptionsBuilder> options)
+    {
+        services.AddDbContext<ApplicationDbContext>(options);
+        services.AddTransient<IBaseCommandUnitOfWork, BaseEFUnitOfWork<ApplicationDbContext>>();
+        services.AddTransient<ISeadData, SeadData>();
+        return services;
+    }
 
     public static IServiceProvider InitializeDatabase(this IServiceProvider serviceProvider)
     {
@@ -26,22 +34,13 @@ public static class InfrastructureDependencies
         using (var scope = scopeFactory.CreateScope())
         {
             var dbInitializer = scope.ServiceProvider.GetService<ISeadData>();
-            dbInitializer.Initialize();
-            dbInitializer.SeedData();
+            dbInitializer?.AutomatedMigration();
+
+            dbInitializer?.Initialize();
         }
         return serviceProvider;
     }
 
-    public static IServiceCollection RegisterEntityframework(this IServiceCollection services, Action<DbContextOptionsBuilder> options)
-    {
-
-        
-        services.AddDbContext<ApplicationDbContext>(options);
-        services.AddTransient<IBaseCommandUnitOfWork, BaseEFUnitOfWork<ApplicationDbContext>>();
-        services.AddTransient<ISeadData, SeadData>();
-        
-        return services;
-    }
 
     private static IServiceCollection RegisterPages(this IServiceCollection services)
     {

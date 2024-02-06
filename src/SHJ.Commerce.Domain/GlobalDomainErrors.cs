@@ -1,4 +1,6 @@
-﻿namespace SHJ.Commerce.Domain;
+﻿using System.ComponentModel;
+
+namespace SHJ.Commerce.Domain;
 
 public static class GlobalDomainErrors
 {

@@ -32,7 +32,7 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
         };
 
         var addRoleResult = await _Manager.CreateAsync(newRole);
-
+        
         addRoleResult.CheckErrors();
         
 

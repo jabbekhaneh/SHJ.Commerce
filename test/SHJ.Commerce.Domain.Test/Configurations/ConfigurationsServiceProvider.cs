@@ -15,7 +15,6 @@ public abstract class ConfigurationsServiceProvider
     {
         DatabaseInMemory = GetRequiredService<ApplicationDbContext>();
         DatabaseInMemory.Database.EnsureCreated();
-
     }
 
     protected virtual T? GetService<T>()
@@ -32,7 +31,6 @@ public abstract class ConfigurationsServiceProvider
     {
         return Task.CompletedTask;
     }
-
 
     private static IServiceProvider GetServiceProvider()
     {

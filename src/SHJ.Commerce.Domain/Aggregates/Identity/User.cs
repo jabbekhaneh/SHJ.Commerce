@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using SHJ.Commerce.Domain.Common.ValueObjectCollections;
 using System.ComponentModel.DataAnnotations;
 
 namespace SHJ.Commerce.Domain.Aggregates.Identity;
@@ -8,6 +7,7 @@ public class User : IdentityUser<Guid>
 {
     public User()
     {
+        
         UserAddress = new List<UserAddress>();
     }
     [MaxLength(256)]

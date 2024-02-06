@@ -2,11 +2,11 @@
 
 public static class UserAdminInfo
 {
+    public const string RoleName = "Admin";
     public const string AdminFirstName = "Admin";
     public const string AdminLastName = "Admini";
     public const string AdminEmailDefaultValue = "admin@mail.com";
     public const string AdminUserNameDefaultValue = "admin";
-    public const string AdminPasswordDefaultValue = "Aa-123456";
-
+    public const string AdminPasswordDefaultValue = "Aa@123456";
 }
 

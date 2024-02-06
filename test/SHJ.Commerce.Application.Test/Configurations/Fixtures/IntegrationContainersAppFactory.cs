@@ -24,7 +24,7 @@ public class IntegrationContainersAppFactory : WebApplicationFactory<Program>, I
 
         builder.ConfigureAppConfiguration(app =>
         {
-
+            
         });
 
         builder.ConfigureTestServices(services =>

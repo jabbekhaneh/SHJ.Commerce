@@ -1,8 +1,5 @@
-﻿using FluentAssertions;
-using SHJ.Commerce.Application.Test.Configurations.Fixtures;
-using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
+﻿using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 using SHJ.Commerce.Shared.Common;
-using System.Net;
 
 namespace SHJ.Commerce.Application.Test.Services.Identity.v1;
 
@@ -17,19 +14,29 @@ public class AccountAppServices_Test : BaseControllerTests
     [Fact]
     public async Task OnSignIn_WhenExecuteController_ShouldReturnOK()
     {
-        ////arrange
-        //var signInDto = new SignIn()
-        //{
-        //    IsPersistent = true,
-        //    Password = UserAdminInfo.AdminPasswordDefaultValue,
-        //    UserName = UserAdminInfo.AdminPasswordDefaultValue,
-        //};
+        //arrange
+        string email = "SignIn@mail.com".ToLower();
+        string password = "Aa@123456";
+        var input = Builder<CreateUserDto>.CreateNew()
+                                          .With(_ => _.Email, email)
+                                          .With(_ => _.Password,password)
+                                          .Build();
 
-        ////act
-        //var actual = await RequestClient.PostAsync(_Sut, HttpHelper.GetJsonHttpContent(signInDto));
+        var response = await RequestClient.PostAsync(ApiConstUrls.UserAppServices, HttpHelper.GetJsonHttpContent(input));
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-        ////assert
-        //actual.StatusCode.Should().Be(HttpStatusCode.OK);
+        var signInDto = new SignInDto()
+        {
+            IsPersistent = true,
+            UserName = email,
+            Password = password,
+        };
+
+        //act
+        var actual = await RequestClient.PostAsync(_Sut, HttpHelper.GetJsonHttpContent(signInDto));
+
+        //assert
+        actual.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
 

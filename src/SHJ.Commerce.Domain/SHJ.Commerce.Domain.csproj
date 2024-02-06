@@ -8,8 +8,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Mapster" Version="7.4.0" />
-		<PackageReference Include="SHJ.BaseFramework.Domain" Version="1.5.4" />
-		<PackageReference Include="SHJ.BaseFramework.DependencyInjection" Version="1.5.4" />
+		<PackageReference Include="SHJ.BaseFramework.Domain" Version="1.5.5" />
+		<PackageReference Include="SHJ.BaseFramework.DependencyInjection" Version="1.5.5" />
 		<PackageReference Include="SHJ.ExceptionHandler" Version="1.0.5" />
 		<PackageReference Include="SHJ.Toolkits" Version="1.0.0" />
 	</ItemGroup>

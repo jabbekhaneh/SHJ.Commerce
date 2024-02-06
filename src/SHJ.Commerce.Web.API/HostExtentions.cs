@@ -8,7 +8,6 @@ using SHJ.BaseFramework.DependencyInjection.Modules;
 using SHJ.BaseSwagger;
 using SHJ.Commerce.Application;
 using SHJ.Commerce.Infrastructure;
-using SHJ.ExceptionHandler;
 namespace SHJ.Commerce.Web.API;
 
 public static class HostExtentions
@@ -16,8 +15,8 @@ public static class HostExtentions
     //##################  Application Services  ####################
     public static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder builder)
     {
-        
-        
+
+
         builder.Services.BuildApplication();
 
         if (builder.Environment.IsProduction())
@@ -43,14 +42,15 @@ public static class HostExtentions
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
                    .ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutofacModule()));
 
+
         return builder;
     }
     //##################  Application Builder  ####################
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
-        
+
         app.UseApplication();
-        
+
         app.UseHttpsRedirection();
         //app.UseBaseCorsConfig();
         //app.UseSHJExceptionHandler();
@@ -81,7 +81,7 @@ public static class HostExtentions
     //##################  Host  Logger  ####################
     public static WebApplicationBuilder ConfigureHostLogger(this WebApplicationBuilder builder)
     {
-
+        
         Log.Logger = new LoggerConfiguration()
         .MinimumLevel.Information()
         .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
