@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SHJ.BaseFramework.AspNet.Services;
 using SHJ.BaseFramework.Shared;
@@ -28,6 +29,7 @@ public class AccountAppServices : BaseAppService, IAccountAppServices
 
         if (!ModelState.IsValid)
             return await FailRequestAsync(ModelState);
+
         var user = await _signInManager.UserManager.FindByNameAsync(input.UserName);
         if (user is null)
             throw new BaseBusinessException(GlobalIdentityErrors.UserNotFound, "UserNotFound");
@@ -45,16 +47,16 @@ public class AccountAppServices : BaseAppService, IAccountAppServices
     }
 
 
-    //[HttpGet]
-    //public async Task<BaseResult<ProfileDto>> Profile()
-    //{
-    //    var userId = ClaimService.GetUserId().ToString();
+    [HttpGet,Authorize]
+    public async Task<BaseResult<ProfileDto>> Profile()
+    {
+        var userId = ClaimService.GetUserId().ToString();
 
-    //    var user = _signInManager.UserManager.FindByIdAsync(userId);
-    //    var profile = user.Adapt<ProfileDto>();
+        var user = _signInManager.UserManager.FindByIdAsync(userId);
+        var profile = user.Adapt<ProfileDto>();
 
-    //    return await OkAsync<ProfileDto>(profile);
-    //}
+        return await OkAsync<ProfileDto>(profile);
+    }
 
     //[HttpPut]
     //public async Task<BaseResult> Profile([FromBody] ProfileDto input)

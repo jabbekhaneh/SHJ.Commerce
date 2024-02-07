@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SHJ.BaseFramework.AspNet.Services;
@@ -11,7 +12,7 @@ using SHJ.ExceptionHandler;
 
 namespace SHJ.Commerce.Application.Services.Identity.v1;
 
-[BaseControllerName("User")]
+[BaseControllerName("User"),Authorize]
 public class UserAppServices : BaseAppService, IUserAppServices
 {
     private readonly UserManager<User> _Manager;

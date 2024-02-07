@@ -1,5 +1,4 @@
 ﻿using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
-using SHJ.Commerce.Shared.Common;
 
 namespace SHJ.Commerce.Application.Test.Services.Identity.v1;
 
@@ -19,12 +18,11 @@ public class AccountAppServices_Test : BaseControllerTests
         string password = "Aa@123456";
         var input = Builder<CreateUserDto>.CreateNew()
                                           .With(_ => _.Email, email)
-                                          .With(_ => _.Password,password)
+                                          .With(_ => _.Password, password)
                                           .Build();
 
         var response = await RequestClient.PostAsync(ApiConstUrls.UserAppServices, HttpHelper.GetJsonHttpContent(input));
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-
         var signInDto = new SignInDto()
         {
             IsPersistent = true,
@@ -39,6 +37,19 @@ public class AccountAppServices_Test : BaseControllerTests
         actual.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
+    [Fact]
+    public async Task OnGetProfile_WhenExecuteController_ShouldReturnOK()
+    {
+
+        //arrange
+
+
+        //act
+        var actual = await RequestClient.GetAsync(_Sut);
+
+        //assert
+        actual.StatusCode.Should().Be(HttpStatusCode.OK);
+    }
 
 
 }

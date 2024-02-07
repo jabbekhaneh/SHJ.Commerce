@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SHJ.BaseFramework.AspNet.Services;
@@ -10,7 +11,7 @@ using System.Security.Claims;
 
 namespace SHJ.Commerce.Application.Services.Identity.v1;
 
-[BaseControllerName("Role")]
+[BaseControllerName("Role"),Authorize]
 public class RoleAppServices : BaseAppService, IRoleAppServices
 {
     private readonly RoleManager<Role> _Manager;

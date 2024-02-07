@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SHJ.BaseFramework.AspNet.Services;
 using SHJ.BaseFramework.Shared;
@@ -8,7 +9,7 @@ using SHJ.Commerce.Shared.Common;
 
 namespace SHJ.Commerce.Application.Services.Identity.v1;
 
-[BaseControllerName("Permission")]
+[BaseControllerName("Permission"),Authorize]
 public class PermissionAppServices : BaseAppService, IPermissionAppServices
 {
     private readonly PermissionManager _Manager;

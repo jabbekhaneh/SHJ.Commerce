@@ -6,6 +6,7 @@ using SHJ.Commerce.Application.Test.Configurations.Fakes;
 using SHJ.BaseFramework.Shared;
 using SHJ.Commerce.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization.Policy;
 
 namespace SHJ.Commerce.Application.Test.Configurations.Fixtures;
 
@@ -30,7 +31,7 @@ public class IntegrationContainersAppFactory : WebApplicationFactory<Program>, I
         builder.ConfigureTestServices(services =>
         {
             var serviceProvider = services.BuildServiceProvider();
-
+            services.AddSingleton<IPolicyEvaluator, FakePolicyEvaluator>();
             services.RegisterEntityframework(options =>
             {
                 options.UseSqlServer(SqlContainerFixture.GetConnectionString, builder =>
