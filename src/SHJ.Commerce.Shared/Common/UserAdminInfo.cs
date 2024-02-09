@@ -8,5 +8,8 @@ public static class UserAdminInfo
     public const string AdminEmailDefaultValue = "admin@mail.com";
     public const string AdminUserNameDefaultValue = "admin";
     public const string AdminPasswordDefaultValue = "Aa@123456";
+
 }
+
+
 

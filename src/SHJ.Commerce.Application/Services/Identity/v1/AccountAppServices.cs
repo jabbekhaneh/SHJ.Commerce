@@ -6,6 +6,7 @@ using SHJ.BaseFramework.Shared;
 using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 using SHJ.Commerce.Domain;
 using SHJ.Commerce.Domain.Aggregates.Identity;
+using SHJ.Commerce.Infrastructure;
 using SHJ.ExceptionHandler;
 
 namespace SHJ.Commerce.Application.Services.Identity.v1;
@@ -18,10 +19,9 @@ public class AccountAppServices : BaseAppService, IAccountAppServices
     public AccountAppServices(SignInManager<User> signInManager)
     {
         _signInManager = signInManager;
-
     }
 
-    [HttpPost]
+    [HttpPost("SingIn")]
     public async Task<BaseResult> SignIn([FromBody] SignInDto input)
     {
         if (_signInManager.IsSignedIn(User))
@@ -39,6 +39,7 @@ public class AccountAppServices : BaseAppService, IAccountAppServices
 
         if (result.Succeeded)
         {
+            
             var token = _signInManager.GenerateToken(user);
             return await ReturnResultAsync(token);
         }

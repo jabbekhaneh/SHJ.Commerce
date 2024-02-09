@@ -3,13 +3,7 @@
 internal static class InternalExtentions
 {
 
-    public static IServiceCollection RegisterBaseMvcApplication(this IServiceCollection services)
-    {
-        //services.AddControllers();
-        //services.AddEndpointsApiExplorer();
-
-        return services;
-    }
+    
     public static IApplicationBuilder UseBaseCorsConfig(this IApplicationBuilder app)
     {
         app.UseCors("EnableCorse");

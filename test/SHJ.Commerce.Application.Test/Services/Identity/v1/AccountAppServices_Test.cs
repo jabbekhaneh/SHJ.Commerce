@@ -31,7 +31,7 @@ public class AccountAppServices_Test : BaseControllerTests
         };
 
         //act
-        var actual = await RequestClient.PostAsync(_Sut, HttpHelper.GetJsonHttpContent(signInDto));
+        var actual = await RequestClient.PostAsync(_Sut + "/SingIn", HttpHelper.GetJsonHttpContent(signInDto));
 
         //assert
         actual.StatusCode.Should().Be(HttpStatusCode.OK);

@@ -10,6 +10,7 @@
 	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
     <PackageReference Include="SHJ.BaseFramework.Dapper" Version="1.5.5" />
     <PackageReference Include="SHJ.BaseFramework.EntityFrameworkCore" Version="1.5.5" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SHJ.BaseFramework.EntityFrameworkCore;
 using SHJ.BaseFramework.Repository;
@@ -10,15 +11,26 @@ namespace SHJ.Commerce.Infrastructure;
 
 public static class InfrastructureDependencies
 {
-    public static IServiceCollection BuildInfrastructure(this IServiceCollection services)
+    public static IServiceCollection UseTokenBase(this IServiceCollection services)
     {
-        services.RegisterPages();
 
-        services.RegisterIdentity();
+        services.AddAuthentication(options =>
+        {
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+
+        }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+        {
+            //If use identity server
+            // options.Audience = BaseJwtConsts.IdentityServerUrl;
+            //options.SaveToken = true;
+
+        });
+
 
         return services;
     }
-    
+
     public static IServiceCollection RegisterEntityframework(this IServiceCollection services, Action<DbContextOptionsBuilder> options)
     {
         services.AddDbContext<ApplicationDbContext>(options);
@@ -39,13 +51,6 @@ public static class InfrastructureDependencies
             dbInitializer?.Initialize();
         }
         return serviceProvider;
-    }
-
-
-    private static IServiceCollection RegisterPages(this IServiceCollection services)
-    {
-
-        return services;
     }
 
 }

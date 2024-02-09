@@ -1,8 +1,9 @@
-﻿using SHJ.BaseFramework.Shared;
+﻿using SHJ.BaseFramework.DependencyInjection.Contracts;
+using SHJ.BaseFramework.Shared;
 
 namespace SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 
-public interface IAccountAppServices
+public interface IAccountAppServices : IScopedDependency
 {
     Task<BaseResult> SignIn(SignInDto input);
     Task<BaseResult<ProfileDto>> Profile();
