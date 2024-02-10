@@ -8,6 +8,7 @@ using SHJ.BaseFramework.Shared;
 using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 using SHJ.Commerce.Domain;
 using SHJ.Commerce.Domain.Aggregates.Identity;
+using SHJ.Commerce.Infrastructure;
 using SHJ.ExceptionHandler;
 
 namespace SHJ.Commerce.Application.Services.Identity.v1;
@@ -16,7 +17,6 @@ namespace SHJ.Commerce.Application.Services.Identity.v1;
 public class UserAppServices : BaseAppService, IUserAppServices
 {
     private readonly UserManager<User> _Manager;
-
     public UserAppServices(UserManager<User> userManager)
     {
         _Manager = userManager;
@@ -29,9 +29,9 @@ public class UserAppServices : BaseAppService, IUserAppServices
             return await FailRequestAsync(ModelState);
 
         var newUser = input.Adapt<User>();
-        newUser.UserName = input.Email;
+        newUser.UserName = input.UserName;
+        newUser.Email = input.UserName.ToLower();
         newUser.MobileNumberConfirmed = false;
-
         var createUser = await _Manager.CreateAsync(newUser, input.Password);
         createUser.CheckErrors();
 

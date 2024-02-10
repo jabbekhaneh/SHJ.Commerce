@@ -8,6 +8,9 @@ using SHJ.Commerce.Shared.Common;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using SHJ.Commerce.Domain;
+using SHJ.ExceptionHandler;
+using System.Collection;
 
 namespace SHJ.Commerce.Infrastructure;
 
@@ -16,7 +19,7 @@ public static class IdentityConfiguration
 
     public static IServiceCollection RegisterIdentity(this IServiceCollection services)
     {
-        
+
         services.AddScoped<PermissionManager, PermissionManager>();
 
         services.AddIdentity<User, Role>(options =>
@@ -57,8 +60,10 @@ public static class IdentityConfiguration
                 EmailConfirmed = true,
                 MobileNumberConfirmed = true,
             };
-            await userManager.CreateAsync(user, UserAdminInfo.AdminPasswordDefaultValue);
-            await userManager.AddToRoleAsync(user, UserAdminInfo.RoleName);
+            var addUserResult = await userManager.CreateAsync(user, UserAdminInfo.AdminPasswordDefaultValue);
+            addUserResult.CheckErrors();
+            var addRoleResult= await userManager.AddToRoleAsync(user, UserAdminInfo.RoleName);
+            addRoleResult.CheckErrors();
         }
     }
 
@@ -120,8 +125,45 @@ public static class IdentityConfiguration
     #endregion
 
 
+
+    #region IDENTITY RESULT CHECK
+    public static void CheckErrors(this IdentityResult identityResult)
+    {
+        if (identityResult.Succeeded)
+        {
+            return;
+        }
+
+        if (identityResult.Errors == null)
+        {
+            throw new ArgumentException("identityResult.Errors is  null.");
+        }
+
+        throw new BaseBusinessException(
+            code: "Identity Error Code : " + identityResult.Errors.First().Code,
+            message: identityResult.Errors.Select(err => err.Description).JoinAsString(", "));
+    }
+
+
+    public static void CheckSignInResultErrors(this SignInResult signInResult)
+    {
+        if (signInResult.Succeeded)
+            return;
+
+        if (signInResult.IsLockedOut)
+            throw new BaseBusinessException(GlobalIdentityErrors.IsLockedOut, "IsLockedOut");
+
+        if (signInResult.IsNotAllowed)
+            throw new BaseBusinessException(GlobalIdentityErrors.IsNotAllowed, "IsNotAllowed");
+
+        if (signInResult.RequiresTwoFactor)
+            throw new BaseBusinessException(GlobalIdentityErrors.RequiresTwoFactor, "RequiresTwoFactor");
+
+        throw new BaseBusinessException(GlobalIdentityErrors.Name);
+    }
+    #endregion
     #region Private Methods
-    
+
 
     private static IServiceCollection BuildCookieeBase(this IServiceCollection services)
     {

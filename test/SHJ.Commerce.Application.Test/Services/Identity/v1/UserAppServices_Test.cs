@@ -1,5 +1,4 @@
 ﻿using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
-using static ServiceStack.Diagnostics.Events;
 
 namespace SHJ.Commerce.Application.Test.Services.Identity.v1;
 
@@ -16,9 +15,9 @@ public class UserAppServices_Test : BaseControllerTests
     public async Task OnCreateUser_WhenExecuteController_ShouldReturnOK()
     {
         //arrange
-        string email = "dummy-email@mail.com".ToLower();
+        string email = "dummy_email@mail.com".ToLower();
         var input = Builder<CreateUserDto>.CreateNew()
-                                          .With(_ => _.Email, email)
+                                          .With(_ => _.UserName, email)
                                           .With(_ => _.Password, "Aa@123456")
                                           .Build();
         //act 
@@ -35,7 +34,7 @@ public class UserAppServices_Test : BaseControllerTests
         string email = "dummy-emaile-dublicate@mail.com".ToLower();
         await RequestClient.CreateUserAsync(email);
         var input = Builder<CreateUserDto>.CreateNew()
-                                          .With(_ => _.Email, email)
+                                          .With(_ => _.UserName, email)
                                           .With(_ => _.Password, "Aa@123456")
                                           .Build();
         //act 
@@ -78,7 +77,7 @@ public class UserAppServices_Test : BaseControllerTests
         //arrange
         string email = "dummy-GetUserById@mail.com".ToLower();
         var createUserDto = Builder<CreateUserDto>.CreateNew()
-                                                  .With(_ => _.Email, email)
+                                                  .With(_ => _.UserName, email)
                                                   .With(_ => _.Password, "Aa@123456")
                                                   .Build();
         var res = await RequestClient.PostAsync(ApiConstUrls.UserAppServices, HttpHelper.GetJsonHttpContent(createUserDto));
@@ -99,7 +98,7 @@ public class UserAppServices_Test : BaseControllerTests
         //arrange
         string email = "dummy-GetAllUser@mail.com".ToLower();
         var createUserDto = Builder<CreateUserDto>.CreateNew()
-                                                  .With(_ => _.Email, email)
+                                                  .With(_ => _.UserName, email)
                                                   .With(_ => _.Password, "Aa@123456")
                                                   .Build();
         await RequestClient.PostAsync(ApiConstUrls.UserAppServices, HttpHelper.GetJsonHttpContent(createUserDto));
@@ -134,7 +133,7 @@ public class UserAppServices_Test : BaseControllerTests
     {
         //arrange
         var createUserDto = Builder<CreateUserDto>.CreateNew()
-                                                  .With(_ => _.Email, "dummy-editUser@mail.com")
+                                                  .With(_ => _.UserName, "dummy-editUser@mail.com")
                                                   .With(_ => _.Password, "Aa@123456")
                                                   .Build();
 

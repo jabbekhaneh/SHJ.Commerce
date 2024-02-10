@@ -1,4 +1,5 @@
 ﻿using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
+using SHJ.Commerce.Shared.Common;
 
 namespace SHJ.Commerce.Application.Test.Services.Identity.v1;
 
@@ -13,21 +14,13 @@ public class AccountAppServices_Test : BaseControllerTests
     [Fact]
     public async Task OnSignIn_WhenExecuteController_ShouldReturnOK()
     {
+        await RequestClient.CreateUserAsync("singIn@mail.com");
         //arrange
-        string email = "SignIn@mail.com".ToLower();
-        string password = "Aa@123456";
-        var input = Builder<CreateUserDto>.CreateNew()
-                                          .With(_ => _.Email, email)
-                                          .With(_ => _.Password, password)
-                                          .Build();
-
-        var response = await RequestClient.PostAsync(ApiConstUrls.UserAppServices, HttpHelper.GetJsonHttpContent(input));
-        response.StatusCode.Should().Be(HttpStatusCode.OK);
         var signInDto = new SignInDto()
         {
             IsPersistent = true,
-            UserName = email,
-            Password = password,
+            UserName = UserAdminInfo.AdminEmailDefaultValue,
+            Password = UserAdminInfo.AdminPasswordDefaultValue,
         };
 
         //act

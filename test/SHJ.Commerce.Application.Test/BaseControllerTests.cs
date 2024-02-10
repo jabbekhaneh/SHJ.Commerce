@@ -1,7 +1,5 @@
-﻿using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Net.Http.Headers;
 
 
 namespace SHJ.Commerce.Application.Test;
@@ -15,13 +13,8 @@ public class BaseControllerTests : IClassFixture<IntegrationContainersAppFactory
     {
         _factory = factory;
         RequestClient = _factory.CreateClient();
-        Connection = new SqlConnection(_factory.SqlContainerFixture.GetConnectionString);
         
+        Connection = new SqlConnection(_factory.SqlContainerFixture.GetConnectionString);   
     }
-
-    
-   
-
-
 }
 

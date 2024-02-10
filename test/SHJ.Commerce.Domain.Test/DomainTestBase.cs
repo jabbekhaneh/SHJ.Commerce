@@ -6,13 +6,13 @@ namespace SHJ.Commerce.Domain.Test;
 public abstract class DomainTestBase : ConfigurationsServiceProvider
 {
 
-    public void Initialize()
+    public async Task  Initialize()
     {
         using (var scope = RootServiceProvider.CreateScope())
         {
             var dbInitializer = scope.ServiceProvider.GetService<ISeadData>();
-            dbInitializer.AutomatedMigration();
-            dbInitializer.Initialize();
+            dbInitializer?.AutomatedMigration();
+            await dbInitializer.Initialize();
         }
     }
 

@@ -1,0 +1,26 @@
+2024-02-10 13:06:03.523 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-02-10 13:06:09.432 -08:00 [INF] User profile is available. Using 'C:\Users\Jabbekhaneh\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-10 13:06:09.772 -08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-10 13:06:09.774 -08:00 [INF] Hosting environment: Development
+2024-02-10 13:06:09.774 -08:00 [INF] Content root path: E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API
+2024-02-10 13:06:09.809 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/index.html - null null
+2024-02-10 13:06:14.307 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/index.html - 200 null text/html;charset=utf-8 4510.977ms
+2024-02-10 13:06:14.344 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-10 13:06:14.355 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/_framework/aspnetcore-browser-refresh.js - 200 13776 application/javascript; charset=utf-8 8.754ms
+2024-02-10 13:06:17.519 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/_vs/browserLink - null null
+2024-02-10 13:06:18.121 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/_vs/browserLink - 200 null text/javascript; charset=UTF-8 602.376ms
+2024-02-10 13:06:18.346 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/1.0/swagger.json - null null
+2024-02-10 13:06:18.754 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/1.0/swagger.json - 200 null application/json;charset=utf-8 408.1206ms
+2024-02-10 13:09:40.179 -08:00 [INF] Starting SHJ.Commerce.Web.API
+2024-02-10 13:09:43.588 -08:00 [INF] User profile is available. Using 'C:\Users\Jabbekhaneh\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-10 13:09:43.926 -08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-10 13:09:43.927 -08:00 [INF] Hosting environment: Development
+2024-02-10 13:09:43.928 -08:00 [INF] Content root path: E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API
+2024-02-10 13:09:43.963 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/index.html - null null
+2024-02-10 13:09:45.131 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/index.html - 200 null text/html;charset=utf-8 1184.1573ms
+2024-02-10 13:09:45.155 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-10 13:09:45.167 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/_framework/aspnetcore-browser-refresh.js - 200 13776 application/javascript; charset=utf-8 11.2931ms
+2024-02-10 13:09:49.398 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/_vs/browserLink - null null
+2024-02-10 13:09:49.484 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/_vs/browserLink - 200 null text/javascript; charset=UTF-8 85.7441ms
+2024-02-10 13:09:50.218 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/1.0/swagger.json - null null
+2024-02-10 13:09:50.721 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/1.0/swagger.json - 200 null application/json;charset=utf-8 503.0108ms

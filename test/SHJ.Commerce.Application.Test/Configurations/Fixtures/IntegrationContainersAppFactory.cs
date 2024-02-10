@@ -7,6 +7,8 @@ using SHJ.BaseFramework.Shared;
 using SHJ.Commerce.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization.Policy;
+using Microsoft.AspNetCore.Identity;
+using SHJ.Commerce.Domain.Aggregates.Identity;
 
 namespace SHJ.Commerce.Application.Test.Configurations.Fixtures;
 
@@ -25,12 +27,13 @@ public class IntegrationContainersAppFactory : WebApplicationFactory<Program>, I
 
         builder.ConfigureAppConfiguration(app =>
         {
-            
+           
         });
 
         builder.ConfigureTestServices(services =>
         {
-            var serviceProvider = services.BuildServiceProvider();
+            
+            var serviceProvider = services.BuildServiceProvider();            
             services.AddSingleton<IPolicyEvaluator, FakePolicyEvaluator>();
             services.RegisterEntityframework(options =>
             {

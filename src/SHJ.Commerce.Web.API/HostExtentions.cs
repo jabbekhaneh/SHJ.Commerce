@@ -9,6 +9,7 @@ using SHJ.BaseFramework.DependencyInjection.Modules;
 using SHJ.BaseSwagger;
 using SHJ.BaseSwagger.Options;
 using SHJ.Commerce.Infrastructure;
+using SHJ.Commerce.Shared.Common;
 
 namespace SHJ.Commerce.Web.API;
 
@@ -20,7 +21,7 @@ public static class HostExtentions
         builder.Services.AddSHJBaseFrameworkAspNet(option => { });
         builder.Services.RegisterIdentity();
         builder.Services.UseTokenBase();
-        
+
         if (builder.Environment.IsProduction())
         {
             builder.Services.RegisterEntityframework(options =>
@@ -33,19 +34,19 @@ public static class HostExtentions
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.RegisterSwagger(options =>
         {
-            options.DocumentName = "*** SHJ Commerce API ***";
+            options.DocumentName = "SHJ Commerce API v";
             options.Authorize = new BaseSwaggerSecurityDefinition
             {
-                Key = "Bearer",
+                Key = BaseJwtConsts.DefaultScheme,
                 SecurityScheme = new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
                     Name = "Authorization",
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" },
-                    
+                    Description = "JWT Authorization header using the Bearer scheme",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = BaseJwtConsts.DefaultScheme,
                 },
-                
+
             };
 
         });
@@ -57,7 +58,7 @@ public static class HostExtentions
     //##################  Application Builder  ####################
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
-        app.UseSHJBaseFrameworkAspNet();        
+        app.UseSHJBaseFrameworkAspNet();
 
         if (app.Environment.IsDevelopment())
         {
@@ -73,7 +74,7 @@ public static class HostExtentions
 
         app.UseAuthorization();
         app.MapControllers();
-        
+
         return app;
     }
 

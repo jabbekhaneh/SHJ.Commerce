@@ -7,6 +7,7 @@ using SHJ.BaseFramework.Repository;
 using SHJ.BaseFramework.Shared;
 using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 using SHJ.Commerce.Domain.Aggregates.Identity;
+using SHJ.Commerce.Infrastructure;
 using System.Security.Claims;
 
 namespace SHJ.Commerce.Application.Services.Identity.v1;
