@@ -7,10 +7,6 @@ public class LogHistory : BaseEntity
 
     }
     public LogHistoryType Type { get; set; }
-    public virtual string? IP { get; set; } = string.Empty;
+    public virtual string? IP { get; set; } = String.Empty;
     public virtual string? OS { get; set; } = String.Empty;
-}
-public enum LogHistoryType : int
-{
-
 }

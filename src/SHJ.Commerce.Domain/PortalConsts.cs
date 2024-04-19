@@ -1,5 +1,4 @@
-﻿global using SHJ.Toolkits;
-global using SHJ.BaseFramework.Domain;
+﻿global using SHJ.BaseFramework.Domain;
 global using SHJ.BaseFramework.Repository;
 namespace SHJ.Commerce.Domain;
 

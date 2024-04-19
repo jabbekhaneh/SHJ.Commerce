@@ -24,3 +24,90 @@
 2024-02-10 13:09:49.484 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/_vs/browserLink - 200 null text/javascript; charset=UTF-8 85.7441ms
 2024-02-10 13:09:50.218 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/1.0/swagger.json - null null
 2024-02-10 13:09:50.721 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/1.0/swagger.json - 200 null application/json;charset=utf-8 503.0108ms
+2024-04-05 09:09:31.536 -07:00 [INF] Starting SHJ.Commerce.Web.API
+2024-04-05 09:09:33.603 -07:00 [INF] User profile is available. Using 'C:\Users\Jabbekhaneh\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-04-05 09:09:33.798 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-05 09:09:33.799 -07:00 [INF] Hosting environment: Development
+2024-04-05 09:09:33.799 -07:00 [INF] Content root path: E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API
+2024-04-05 09:09:33.817 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger - null null
+2024-04-05 09:09:35.034 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/index.html - null null
+2024-04-05 09:09:35.034 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger - 301 null null 1220.3755ms
+2024-04-05 09:09:35.104 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/index.html - 200 null text/html;charset=utf-8 70.1596ms
+2024-04-05 09:09:35.123 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui.css - null null
+2024-04-05 09:09:35.124 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui-bundle.js - null null
+2024-04-05 09:09:35.124 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui-standalone-preset.js - null null
+2024-04-05 09:09:35.142 -07:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-04-05 09:09:35.146 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui.css - 200 143632 text/css 22.6529ms
+2024-04-05 09:09:35.148 -07:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-04-05 09:09:35.156 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui-standalone-preset.js - 200 337162 text/javascript 31.6603ms
+2024-04-05 09:09:35.160 -07:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-04-05 09:09:35.189 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui-bundle.js - 200 1092889 text/javascript 65.0512ms
+2024-04-05 09:09:36.171 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-05 09:09:36.174 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/_framework/aspnetcore-browser-refresh.js - 200 13776 application/javascript; charset=utf-8 1.94ms
+2024-04-05 09:09:36.184 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/_vs/browserLink - null null
+2024-04-05 09:09:36.240 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/_vs/browserLink - 200 null text/javascript; charset=UTF-8 56.0561ms
+2024-04-05 09:09:36.458 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/1.0/swagger.json - null null
+2024-04-05 09:09:36.498 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/favicon-32x32.png - null null
+2024-04-05 09:09:36.499 -07:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-04-05 09:09:36.499 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/favicon-32x32.png - 200 628 image/png 1.2852ms
+2024-04-05 09:09:36.595 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/1.0/swagger.json - 200 null application/json;charset=utf-8 136.4392ms
+2024-04-05 09:09:37.791 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/highLightTitle.png - null null
+2024-04-05 09:09:37.796 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/highLightTitle.png - 404 null null 5.0147ms
+2024-04-05 09:09:37.798 -07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:35976/swagger/highLightTitle.png, Response status code: 404
+2024-04-06 21:28:47.426 -07:00 [INF] Starting SHJ.Commerce.Web.API
+2024-04-06 21:28:55.036 -07:00 [INF] User profile is available. Using 'C:\Users\Jabbekhaneh\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-04-06 21:28:55.600 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-06 21:28:55.601 -07:00 [INF] Hosting environment: Development
+2024-04-06 21:28:55.601 -07:00 [INF] Content root path: E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API
+2024-04-06 21:28:55.621 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger - null null
+2024-04-06 21:28:58.375 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger - 301 null null 2752.0458ms
+2024-04-06 21:28:58.379 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/index.html - null null
+2024-04-06 21:28:58.660 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/index.html - 200 null text/html;charset=utf-8 282.2222ms
+2024-04-06 21:28:58.780 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui-bundle.js - null null
+2024-04-06 21:28:58.781 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui.css - null null
+2024-04-06 21:28:58.784 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui-standalone-preset.js - null null
+2024-04-06 21:28:58.800 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-06 21:28:58.812 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/_framework/aspnetcore-browser-refresh.js - 200 13776 application/javascript; charset=utf-8 11.991ms
+2024-04-06 21:28:58.855 -07:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-04-06 21:28:58.855 -07:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-04-06 21:28:58.858 -07:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-04-06 21:28:58.873 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui.css - 200 143632 text/css 91.1881ms
+2024-04-06 21:28:58.910 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui-standalone-preset.js - 200 337162 text/javascript 125.9205ms
+2024-04-06 21:28:58.963 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui-bundle.js - 200 1092889 text/javascript 183.4014ms
+2024-04-06 21:29:01.411 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/_vs/browserLink - null null
+2024-04-06 21:29:01.539 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/_vs/browserLink - 200 null text/javascript; charset=UTF-8 128.2779ms
+2024-04-06 21:29:02.200 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/1.0/swagger.json - null null
+2024-04-06 21:29:02.684 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/1.0/swagger.json - 200 null application/json;charset=utf-8 483.6624ms
+2024-04-06 21:29:09.547 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/highLightTitle.png - null null
+2024-04-06 21:29:09.555 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/highLightTitle.png - 404 null null 8.1198ms
+2024-04-06 21:29:09.559 -07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:35976/swagger/highLightTitle.png, Response status code: 404
+2024-04-19 09:53:00.997 -07:00 [INF] Starting SHJ.Commerce.Web.API
+2024-04-19 09:53:05.996 -07:00 [INF] User profile is available. Using 'C:\Users\Jabbekhaneh\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-04-19 09:53:06.268 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-19 09:53:06.269 -07:00 [INF] Hosting environment: Development
+2024-04-19 09:53:06.269 -07:00 [INF] Content root path: E:\mygit\Businesse Projects\SHJ.Commerce\src\SHJ.Commerce.Web.API
+2024-04-19 09:53:06.292 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger - null null
+2024-04-19 09:53:08.205 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/index.html - null null
+2024-04-19 09:53:08.206 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger - 301 null null 1915.8786ms
+2024-04-19 09:53:08.303 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/index.html - 200 null text/html;charset=utf-8 97.256ms
+2024-04-19 09:53:08.334 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui.css - null null
+2024-04-19 09:53:08.336 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui-bundle.js - null null
+2024-04-19 09:53:08.338 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui-standalone-preset.js - null null
+2024-04-19 09:53:08.340 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/_framework/aspnetcore-browser-refresh.js - null null
+2024-04-19 09:53:08.345 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/_framework/aspnetcore-browser-refresh.js - 200 13776 application/javascript; charset=utf-8 4.4542ms
+2024-04-19 09:53:08.355 -07:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-04-19 09:53:08.358 -07:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-04-19 09:53:08.358 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui.css - 200 143632 text/css 23.195ms
+2024-04-19 09:53:08.370 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui-standalone-preset.js - 200 337162 text/javascript 31.7474ms
+2024-04-19 09:53:08.376 -07:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-04-19 09:53:08.412 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/swagger-ui-bundle.js - 200 1092889 text/javascript 75.7403ms
+2024-04-19 09:53:10.530 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/_vs/browserLink - null null
+2024-04-19 09:53:10.607 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/_vs/browserLink - 200 null text/javascript; charset=UTF-8 77.6271ms
+2024-04-19 09:53:11.042 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/1.0/swagger.json - null null
+2024-04-19 09:53:11.119 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/favicon-32x32.png - null null
+2024-04-19 09:53:11.121 -07:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-04-19 09:53:11.122 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/favicon-32x32.png - 200 628 image/png 2.6579ms
+2024-04-19 09:53:11.308 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/1.0/swagger.json - 200 null application/json;charset=utf-8 266.3188ms
+2024-04-19 09:53:12.425 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:35976/swagger/highLightTitle.png - null null
+2024-04-19 09:53:12.430 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:35976/swagger/highLightTitle.png - 404 null null 5.3735ms
+2024-04-19 09:53:12.433 -07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:35976/swagger/highLightTitle.png, Response status code: 404

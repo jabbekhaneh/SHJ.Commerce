@@ -23,19 +23,6 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, Guid, UserClai
     #endregion
 
 
-    #region Const
-    
-    private IBaseClaimService ClaimService;
-
-    public ApplicationDbContext(DbContextOptions options, IBaseClaimService claimService) : base(options)
-    {
-        ClaimService = claimService;
-    }
-    
-    #endregion
-
-
-
     #region ContextConfigurations
     protected override void OnModelCreating(ModelBuilder builder)
     {

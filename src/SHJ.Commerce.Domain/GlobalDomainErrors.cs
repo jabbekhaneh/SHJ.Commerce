@@ -6,7 +6,6 @@ public static class GlobalDomainErrors
 {
     public const string Name = "Commerce.ERROR: ";
     public const string DublicatePageTitle = $"{Name}6001";
-
 }
 public static class GlobalIdentityErrors
 {

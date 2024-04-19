@@ -15,7 +15,7 @@ namespace SHJ.Commerce.Application.Services.Identity.v1;
 public class AccountAppServices : BaseAppService, IAccountAppServices
 {
     private readonly SignInManager<User> _signInManager;
-    
+
     public AccountAppServices(SignInManager<User> signInManager)
     {
         _signInManager = signInManager;
@@ -31,7 +31,7 @@ public class AccountAppServices : BaseAppService, IAccountAppServices
             return await FailRequestAsync(ModelState);
 
         var TestUsers = _signInManager.UserManager.Users;
-        
+
         var user = await _signInManager.UserManager.FindByNameAsync(input.UserName);
         if (user is null)
             throw new BaseBusinessException(GlobalIdentityErrors.UserNotFound, "UserNotFound");
@@ -48,7 +48,7 @@ public class AccountAppServices : BaseAppService, IAccountAppServices
         return await FailRequestAsync();
     }
 
-    [HttpGet,Authorize]
+    [HttpGet, Authorize]
     public async Task<BaseResult<ProfileDto>> Profile()
     {
         var userId = ClaimService.GetUserId().ToString();
@@ -80,4 +80,4 @@ public class AccountAppServices : BaseAppService, IAccountAppServices
     //    return await OkAsync();
 }
 
-   
+

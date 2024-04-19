@@ -23,6 +23,7 @@ public class User : IdentityUser<Guid>
 
     [MaxLength(25)]
     public virtual string? Mobile { get; set; } = string.Empty;
+
     public virtual bool? MobileNumberConfirmed { get; set; }
 
     public virtual decimal? Wallet { get; set; } = 0;
