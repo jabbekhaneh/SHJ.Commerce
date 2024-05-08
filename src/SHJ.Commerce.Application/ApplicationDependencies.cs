@@ -4,7 +4,5 @@ namespace SHJ.Commerce.Application;
 
 public static class ApplicationDependencies
 {
-
-
    
 }

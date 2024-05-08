@@ -30,8 +30,6 @@ public class AccountAppServices : BaseAppService, IAccountAppServices
         if (!ModelState.IsValid)
             return await FailRequestAsync(ModelState);
 
-        var TestUsers = _signInManager.UserManager.Users;
-
         var user = await _signInManager.UserManager.FindByNameAsync(input.UserName);
         if (user is null)
             throw new BaseBusinessException(GlobalIdentityErrors.UserNotFound, "UserNotFound");
@@ -44,7 +42,7 @@ public class AccountAppServices : BaseAppService, IAccountAppServices
             var token = _signInManager.GenerateToken(user);
             return await ReturnResultAsync(token);
         }
-
+      
         return await FailRequestAsync();
     }
 

@@ -17,7 +17,6 @@ public class SeadData : ISeadData
 
     public async Task Initialize()
     {
-
         using (var serviceScope = _scopeFactory.CreateScope())
         {
             using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
@@ -53,8 +52,8 @@ public class SeadData : ISeadData
         {
             using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
             {
-                //if (context.Database.IsSqlServer())
-                context?.Database.Migrate();
+                if (context.Database.IsSqlServer())
+                    context?.Database.Migrate();
             }
         }
     }

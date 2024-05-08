@@ -34,30 +34,28 @@ internal static class ApplicationDbContextConfigurations
 
     }
     
-    public static void ConfigurationOptionsBuilder(this DbContextOptionsBuilder optionsBuilder,
-                                                   IOptions<BaseOptions> Options)
-    {
+    //public static void ConfigurationOptionsBuilder(this DbContextOptionsBuilder optionsBuilder,
+    //                                               IOptions<BaseOptions> Options)
+    //{
         
-        if (Options.Value.DatabaseType == DatabaseType.InMemory)
-        {
-            optionsBuilder.UseInMemoryDatabase("App.Db");
-            optionsBuilder.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
-        }
-        else if (Options.Value.DatabaseType == DatabaseType.MsSql)
-        {
-            string connectionString = Options.SetConnectionString();
-            optionsBuilder.UseSqlServer(connectionString);
+    //    if (Options.Value.DatabaseType == DatabaseType.InMemory)
+    //    {
+    //        optionsBuilder.UseInMemoryDatabase("App.Db");
+    //        optionsBuilder.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
+    //    }
+    //    else if (Options.Value.DatabaseType == DatabaseType.MsSql)
+    //    {
+    //        string connectionString = Options.SetConnectionString();
+    //        optionsBuilder.UseSqlServer(connectionString);
             
-        }
-        else if (Options.Value.DatabaseType == DatabaseType.Manual)
-        {
-            optionsBuilder.UseSqlServer(Options.Value.ManualConnectionString);
+    //    }
+    //    else if (Options.Value.DatabaseType == DatabaseType.Manual)
+    //    {
+    //        optionsBuilder.UseSqlServer(Options.Value.ManualConnectionString);
 
-        }
+    //    }
 
-    }
+    //}
 
-    public static string SetConnectionString(this IOptions<BaseOptions> Options) 
-        => $@"Data Source={Options.Value.SqlOptions.DataSource};Initial Catalog={Options.Value.SqlOptions.DatabaseName};Persist Security Info=True;MultipleActiveResultSets=True;User ID={Options.Value.SqlOptions.UserID};Password={Options.Value.SqlOptions.Password}";
-    
+        
 }

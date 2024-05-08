@@ -8,9 +8,14 @@
 
   <ItemGroup>
 	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
     <PackageReference Include="SHJ.BaseFramework.Dapper" Version="1.5.5" />
     <PackageReference Include="SHJ.BaseFramework.EntityFrameworkCore" Version="1.5.5" />
-	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
+	 <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

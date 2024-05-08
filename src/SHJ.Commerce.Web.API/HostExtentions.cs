@@ -22,12 +22,11 @@ public static class HostExtentions
         builder.Services.RegisterIdentity();
         builder.Services.UseTokenBase();
 
+        
         if (builder.Environment.IsProduction())
         {
-            builder.Services.RegisterEntityframework(options =>
-            {
-                options.UseSqlServer(InternalExtentions.ProductionConnectionString);
-            });
+            builder.Services.RegisterEntityframework();
+            
         }
 
         builder.Services.AddControllers();

@@ -14,4 +14,8 @@
 		<PackageReference Include="SHJ.Toolkits" Version="1.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\SHJ.Commerce.Domain.Shared\SHJ.Commerce.Domain.Shared.csproj" />
+	</ItemGroup>
+
 </Project>

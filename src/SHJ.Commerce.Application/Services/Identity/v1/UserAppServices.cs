@@ -60,7 +60,6 @@ public class UserAppServices : BaseAppService, IUserAppServices
         var user = await _Manager.FindByIdAsync(id.ToString());
         if (user is null) throw new BaseBusinessException(GlobalIdentityErrors.UserNotFound);
 
-
         var editUser = input.Adapt<EditUserDto, User>(user);
 
         var result = await _Manager.UpdateAsync(editUser);

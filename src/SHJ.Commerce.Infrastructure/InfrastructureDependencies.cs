@@ -16,6 +16,7 @@ public static class InfrastructureDependencies
     public static IServiceCollection UseTokenBase(this IServiceCollection services)
     {
 
+        
         services.AddAuthentication(options =>
         {
             options.DefaultChallengeScheme = BaseJwtConsts.DefaultScheme;
@@ -41,9 +42,9 @@ public static class InfrastructureDependencies
         return services;
     }
 
-    public static IServiceCollection RegisterEntityframework(this IServiceCollection services, Action<DbContextOptionsBuilder> options)
+    public static IServiceCollection RegisterEntityframework(this IServiceCollection services)
     {
-        services.AddDbContext<ApplicationDbContext>(options);
+        services.AddDbContext<ApplicationDbContext>();
         services.AddTransient<IBaseCommandUnitOfWork, BaseEFUnitOfWork<ApplicationDbContext>>();
         services.AddTransient<ISeadData, SeadData>();
         return services;

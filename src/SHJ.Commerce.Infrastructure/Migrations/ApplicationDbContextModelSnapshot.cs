@@ -180,7 +180,7 @@ namespace SHJ.Commerce.Infrastructure.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<bool>("MobileNumberConfirmed")
+                    b.Property<bool?>("MobileNumberConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<string>("NormalizedEmail")
@@ -210,7 +210,7 @@ namespace SHJ.Commerce.Infrastructure.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<decimal>("Wallet")
+                    b.Property<decimal?>("Wallet")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");

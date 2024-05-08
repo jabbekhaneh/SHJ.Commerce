@@ -8,14 +8,12 @@ try
      builder.ConfigureServices()
            .ConfigureHostLogger().Build()
            .ConfigurePipeline().Run();
-
 }
 catch (Exception ex)
 {
     Log.Fatal(ex, "Host terminated unexpectedly! : " + ex.Message);
     if (ex is HostAbortedException)
     {
-
         throw ex ;
     }
 
