@@ -1,0 +1,61 @@
+﻿@model SHJ.Commerce.AuthServer.Web.MVC.Models.Identity.Users.SignUpViewModel
+
+@{
+    ViewData["Title"] = "SingUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="login-content">
+    <form asp-action="SingUp">
+        <img src="~/assets/img/avatar.svg">
+        <h2 class="title aviny">ثبت نام</h2>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="input-div one">
+            <div class="i">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="div">
+                <h5>نام کاربری</h5>
+                <input type="text" class="input" asp-for="Email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="input-div pass">
+            <div class="i">
+                <i class="fas fa-lock"></i>
+            </div>
+            <div class="div">
+                <h5>کلمه عبور</h5>
+                <input type="password" class="input" asp-for="Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="input-div pass">
+            <div class="i">
+                <i class="fas fa-lock"></i>
+            </div>
+            <div class="div">
+                <h5>تکرار کلمه عبور</h5>
+                <input type="password" class="input" asp-for="ConfimedPassword">
+                <span asp-validation-for="ConfimedPassword" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <a href="#" class="col-md-6">ورود</a>
+            <a href="#" class="col-md-6 text-left">فراموشی رمز</a>
+        </div>
+        <input type="submit" class="btn" value="ثبت نام">
+    </form>
+</div>
+
+<div class="img">
+    <img src="~/assets/img/bg.svg">
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

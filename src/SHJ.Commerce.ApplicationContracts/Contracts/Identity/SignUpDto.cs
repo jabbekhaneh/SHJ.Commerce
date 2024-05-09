@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 
-public class SignUp :BaseDto
+public class SignUpDto : BaseDto
 {
     [Required, MaxLength(255), EmailAddress]
     public string Email { get; set; } = string.Empty;
@@ -14,9 +14,7 @@ public class SignUp :BaseDto
     [MaxLength(255)]
     public string? LastName { get; set; } = string.Empty;
 
-    [Required, DataType(DataType.Password)]
+    [Required]
     public string Password { get; set; } = string.Empty;
 
-    [Compare("Password"), DataType(DataType.Password)]
-    public string ConfirmPassword { get; set; } = string.Empty;
 }

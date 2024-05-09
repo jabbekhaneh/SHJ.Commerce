@@ -7,7 +7,8 @@ using SHJ.Commerce.Infrastructure.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 var connection = "Server=.;Database=dbSoft;Trusted_Connection=True;TrustServerCertificate=True";
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddRazorRuntimeCompilation();
 
 builder.Services.AddDbContextPool<ApplicationDbContext>(options =>
 {
