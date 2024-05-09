@@ -16,23 +16,30 @@ builder.Services.AddDbContextPool<ApplicationDbContext>(options =>
 });
 builder.Services.AddIdentity<User, Role>(options =>
 {
-    //options.Password.RequireDigit = true;
+    options.Password.RequireDigit = false;
     //options.Password.RequireLowercase = true;
     //options.Password.RequireNonAlphanumeric = true;
     //options.Password.RequireUppercase = true;
-    //options.Password.RequiredLength = 6;
+    options.Password.RequiredLength = 6;
     //options.Password.RequiredUniqueChars = 1;
-    //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(42000);
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(42000);
     //options.Lockout.MaxFailedAccessAttempts = 10;
     //options.Lockout.AllowedForNewUsers = true;
-    //options.User.AllowedUserNameCharacters =
-    //    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    options.User.AllowedUserNameCharacters =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     //options.User.RequireUniqueEmail = true;
     //options.SignIn.RequireConfirmedEmail = true;
 
-
 }).AddEntityFrameworkStores<ApplicationDbContext>()
          .AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(option =>
+{
+    option.LoginPath = "/Account/SingIn";
+    option.LogoutPath = "/Account/SingOut";
+
+});
+
 
 
 var app = builder.Build();

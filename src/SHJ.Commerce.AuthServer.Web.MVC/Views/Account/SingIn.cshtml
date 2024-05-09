@@ -1,17 +1,17 @@
-﻿@model SHJ.Commerce.AuthServer.Web.MVC.Models.Identity.Users.SignUpViewModel
+﻿@model SHJ.Commerce.AuthServer.Web.MVC.Models.Identity.Users.SignInViewModel
 
 @{
-    ViewData["Title"] = "SingUp";
+    ViewData["Title"] = "ورود";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <img class="wave" src="~/assets/img/wave.png">
 <div class="container">
     <div class="login-content">
-        <form asp-action="SingUp">
+        <form asp-action="SingIn" asp-route-returnUrl="@ViewData["returnUrl"]" method="post">
             @Html.AntiForgeryToken()
             <img src="~/assets/img/avatar.svg">
-            <h2 class="title aviny">ثبت نام</h2>
+            <h2 class="title aviny">ورود</h2>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="input-div one">
@@ -20,8 +20,8 @@
                 </div>
                 <div class="div">
                     <h5>نام کاربری</h5>
-                    <input type="text" class="input" asp-for="Email" autocomplete="off">
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <input type="text" class="input" asp-for="UserName" autocomplete="off">
+                    <span asp-validation-for="UserName" class="text-danger" ></span>
                 </div>
             </div>
 
@@ -35,22 +35,12 @@
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
             </div>
-
-            <div class="input-div pass">
-                <div class="i">
-                    <i class="fas fa-lock"></i>
-                </div>
-                <div class="div">
-                    <h5>تکرار کلمه عبور</h5>
-                    <input type="password" class="input" asp-for="ConfimedPassword">
-                    <span asp-validation-for="ConfimedPassword" class="text-danger"></span>
-                </div>
-            </div>
-
+            
             <div class="row">
-                <a href="/Account/SingIn" class="col-md-6">ورود</a>
+                <a href="/Account/SingUp" class="col-md-6">ثبت نام</a>
+                <a href="#" class="col-md-6 text-left">فراموشی رمز</a>
             </div>
-            <input type="submit" class="btn" value="ثبت نام">
+            <input type="submit" class="btn" value="ورود">
         </form>
     </div>
 

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SHJ.Commerce.AuthServer.Web.MVC.Models;
 using System.Diagnostics;
 
 namespace SHJ.Commerce.AuthServer.Web.MVC.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
