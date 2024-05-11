@@ -8,6 +8,7 @@ using SHJ.BaseFramework.Shared;
 using SHJ.Commerce.ApplicationContracts.Contracts.Identity;
 using SHJ.Commerce.Domain;
 using SHJ.Commerce.Domain.Aggregates.Identity;
+using SHJ.Commerce.Domain.Shared;
 using SHJ.Commerce.Infrastructure;
 using SHJ.ExceptionHandler;
 

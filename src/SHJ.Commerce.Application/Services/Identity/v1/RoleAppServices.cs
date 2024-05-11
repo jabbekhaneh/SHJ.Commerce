@@ -12,7 +12,7 @@ using System.Security.Claims;
 
 namespace SHJ.Commerce.Application.Services.Identity.v1;
 
-[BaseControllerName("Role"),Authorize]
+[BaseControllerName("Role"),Authorize()]
 public class RoleAppServices : BaseAppService, IRoleAppServices
 {
     private readonly RoleManager<Role> _Manager;
@@ -68,8 +68,6 @@ public class RoleAppServices : BaseAppService, IRoleAppServices
         if (role == null) return await FailRequestAsync(BaseStatusCodes.NotFound);
 
         role.Name = input.Name;
-
-        
 
         var getClaimes = await _Manager.GetClaimsAsync(role);
 

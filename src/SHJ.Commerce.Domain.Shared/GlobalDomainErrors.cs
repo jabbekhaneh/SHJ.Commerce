@@ -1,6 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SHJ.Commerce.Domain;
+namespace SHJ.Commerce.Domain.Shared;
+
 
 public static class GlobalDomainErrors
 {

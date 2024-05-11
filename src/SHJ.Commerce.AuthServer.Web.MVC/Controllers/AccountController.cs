@@ -64,8 +64,10 @@ public class AccountController : Controller
     }
 
     [HttpPost, ValidateAntiForgeryToken]
-    public async Task<IActionResult> SingIn(SignInViewModel input, string? ReturnUrl = null)
+    public async Task<IActionResult> SingIn(SignInViewModel input, string returnUrl = "")
     {
+        ViewData["returnUrl"] = returnUrl;
+
         if (!ModelState.IsValid)
             return View(input);
 
@@ -75,8 +77,8 @@ public class AccountController : Controller
         if (result.Succeeded)
         {
             //if (!returnUrl.IsNullOrEmpty() && Url.IsLocalUrl(returnUrl))
-            if (!ReturnUrl.IsNullOrEmpty())
-                return Redirect(ReturnUrl);
+            if (!returnUrl.IsNullOrEmpty())
+                return Redirect(returnUrl);
 
             return Redirect("/");
         }

@@ -1,3 +1,6 @@
+#- ASPNETCORE_ENVIRONMENT=Development
+
+
 version: '3.4'
 
 
@@ -38,7 +41,35 @@ services:
     networks:
      - networkPortal
 #-----------------------------------------------------------------------
-#- ASPNETCORE_ENVIRONMENT=Development
+  shj.commerce.authserver.web.mvc:
+    image: ${DOCKER_REGISTRY-}shjcommerceauthserverwebmvc
+    build:
+      context: .
+      dockerfile: src/SHJ.Commerce.AuthServer.Web.MVC/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_HTTP_PORTS=8080
+    depends_on:
+      - MsSqLServer2019
+    ports:
+      - 58081:8080
+    networks:
+     - networkPortal
+#-----------------------------------------------------------------------
 
+  shj.commerce.dashboard.web.mvc:
+    image: ${DOCKER_REGISTRY-}shjcommercedashboardwebmvc
+    build:
+      context: .
+      dockerfile: src/SHJ.Commerce.Dashboard.Web.MVC/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_HTTP_PORTS=8080
+    depends_on:
+      - MsSqLServer2019
+    ports:
+      - 58082:8080
+    networks:
+     - networkPortal
 
-
+#-----------------------------------------------------------------------

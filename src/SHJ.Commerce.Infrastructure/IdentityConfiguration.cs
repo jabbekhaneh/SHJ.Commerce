@@ -11,6 +11,7 @@ using System.Text;
 using SHJ.Commerce.Domain;
 using SHJ.ExceptionHandler;
 using System.Collection;
+using SHJ.Commerce.Domain.Shared;
 
 namespace SHJ.Commerce.Infrastructure;
 
